@@ -57,16 +57,25 @@ export default function Home() {
 
       <div className="relative z-10 flex flex-col items-center justify-center text-center text-white">
         <motion.h1 
-          className="font-headline text-4xl font-bold tracking-tight text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] sm:text-5xl md:text-6xl lg:text-7xl animate-glow flex flex-wrap justify-center overflow-hidden"
+          className="font-headline text-4xl font-bold tracking-tight text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] sm:text-5xl md:text-6xl lg:text-7xl animate-glow flex flex-col sm:flex-row flex-wrap justify-center overflow-hidden"
           variants={container}
           initial="hidden"
           animate="visible"
         >
-          {text.split('').map((char, index) => (
-            <motion.span key={index} variants={child} style={{ marginRight: char === ' ' ? '1rem' : '0' }}>
-              {char}
-            </motion.span>
-          ))}
+          <motion.div variants={child} className="flex">
+            {'SHARKS FROM'.split('').map((char, index) => (
+              <motion.span key={index} variants={child} style={{ marginRight: char === ' ' ? '1rem' : '0' }}>
+                {char}
+              </motion.span>
+            ))}
+          </motion.div>
+          <motion.div variants={child} className="flex sm:ml-4">
+            {'SPACE'.split('').map((char, index) => (
+              <motion.span key={index} variants={child}>
+                {char}
+              </motion.span>
+            ))}
+          </motion.div>
         </motion.h1>
         <p className="mt-4 max-w-2xl px-4 text-xs text-slate-300 sm:text-sm md:text-base">
           Using satellite data to predict shark habitats and protect marine
