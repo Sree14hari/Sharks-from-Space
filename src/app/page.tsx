@@ -89,7 +89,7 @@ export default function Home() {
             <Link href="/map" className="transition-all hover:text-primary">Map</Link>
           </motion.div>
           <motion.div whileHover={{ scale: 1.1, transition: { type: 'spring', stiffness: 300 } }}>
-            <Link href="#" className="transition-all hover:text-primary">Brain</Link>
+            <Link href="/brain" className="transition-all hover:text-primary">Brain</Link>
           </motion.div>
           <motion.div whileHover={{ scale: 1.1, transition: { type: 'spring', stiffness: 300 } }}>
             <Link href="#" className="transition-all hover:text-primary">SharkTag</Link>
