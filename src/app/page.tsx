@@ -25,7 +25,7 @@ export default function Home() {
       </div>
 
       <div className="relative z-10 flex flex-col items-center justify-center text-center text-white">
-        <h1 className="font-headline text-6xl font-bold tracking-tight text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] md:text-8xl">
+        <h1 className="font-headline text-5xl font-bold tracking-tight text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] md:text-6xl lg:text-8xl">
           SHARKS FROM SPACE
         </h1>
         <p className="mt-4 max-w-2xl text-lg text-slate-300 md:text-xl">
