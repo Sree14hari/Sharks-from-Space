@@ -1,8 +1,9 @@
 
 'use client';
 
-export default function Home() {
+import { Brain, Info, Map, Tag } from 'lucide-react';
 
+export default function Home() {
   return (
     <div className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden">
       <div
@@ -25,6 +26,24 @@ export default function Home() {
           Using satellite data to predict shark habitats and protect marine
           ecosystems.
         </p>
+      </div>
+      <div className="absolute bottom-10 z-10 flex w-full items-center justify-center space-x-12 text-white">
+        <div className="flex flex-col items-center space-y-2">
+          <Info className="h-8 w-8" />
+          <span>Info</span>
+        </div>
+        <div className="flex flex-col items-center space-y-2">
+          <Map className="h-8 w-8" />
+          <span>Map</span>
+        </div>
+        <div className="flex flex-col items-center space-y-2">
+          <Brain className="h-8 w-8" />
+          <span>Brain</span>
+        </div>
+        <div className="flex flex-col items-center space-y-2">
+          <Tag className="h-8 w-8" />
+          <span>SharkTag</span>
+        </div>
       </div>
     </div>
   );
