@@ -17,7 +17,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        body: ['"Audiowide"', 'sans-serif'],
+        body: ['"Open Sans"', 'sans-serif'],
         headline: ['"Audiowide"', 'sans-serif'],
         nav: ['"Orbitron"', 'sans-serif'],
         code: ['monospace'],
