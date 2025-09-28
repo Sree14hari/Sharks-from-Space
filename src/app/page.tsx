@@ -15,10 +15,10 @@ export default function Home() {
       <div
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage:
-            "url('https://storage.googleapis.com/studiopublic/images/world-map-texture.png')",
-          backgroundRepeat: 'repeat',
-          backgroundSize: 'auto',
+          backgroundImage: "url('https://iili.io/K1iHzen.png')",
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
         }}
       >
         <div className="absolute inset-0 bg-black/60" />
