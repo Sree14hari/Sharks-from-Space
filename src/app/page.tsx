@@ -46,7 +46,7 @@ export default function Home() {
       <div
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: "url('https://iili.io/K1iHzen.png')",
+          backgroundImage: "url('https://i.postimg.cc/mDdxvDCH/Screenshot-2025-09-28-130448.png')",
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
@@ -86,7 +86,7 @@ export default function Home() {
             <Link href="/info" className="transition-all hover:text-primary">Info</Link>
           </motion.div>
           <motion.div whileHover={{ scale: 1.1, transition: { type: 'spring', stiffness: 300 } }}>
-            <Link href="#" className="transition-all hover:text-primary">Map</Link>
+            <Link href="/map" className="transition-all hover:text-primary">Map</Link>
           </motion.div>
           <motion.div whileHover={{ scale: 1.1, transition: { type: 'spring', stiffness: 300 } }}>
             <Link href="#" className="transition-all hover:text-primary">Brain</Link>
