@@ -1,1 +1,5 @@
-// Flows will be imported for their side effects in this file.
+import { config } from 'dotenv';
+config();
+
+import '@/ai/flows/suggest-related-variables.ts';
+import '@/ai/flows/predict-foraging-habitats.ts';
