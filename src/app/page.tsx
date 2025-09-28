@@ -26,12 +26,12 @@ export default function Home() {
           Using satellite data to predict shark habitats and protect marine
           ecosystems.
         </p>
-      </div>
-      <div className="absolute bottom-24 z-10 flex w-full items-center justify-center space-x-12 font-nav text-lg text-white">
-        <Link href="#" className="transition-colors hover:text-primary">Info</Link>
-        <Link href="#" className="transition-colors hover:text-primary">Map</Link>
-        <Link href="#" className="transition-colors hover:text-primary">Brain</Link>
-        <Link href="#" className="transition-colors hover:text-primary">SharkTag</Link>
+        <div className="mt-12 flex w-full items-center justify-center space-x-12 font-nav text-lg text-white">
+          <Link href="#" className="transition-colors hover:text-primary">Info</Link>
+          <Link href="#" className="transition-colors hover:text-primary">Map</Link>
+          <Link href="#" className="transition-colors hover:text-primary">Brain</Link>
+          <Link href="#" className="transition-colors hover:text-primary">SharkTag</Link>
+        </div>
       </div>
     </div>
   );
