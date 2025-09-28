@@ -19,6 +19,7 @@ export default {
       fontFamily: {
         body: ['"Audiowide"', 'sans-serif'],
         headline: ['"Audiowide"', 'sans-serif'],
+        nav: ['"Orbitron"', 'sans-serif'],
         code: ['monospace'],
       },
       colors: {

@@ -1,7 +1,7 @@
 
 'use client';
 
-import { Brain, Info, Map, Tag } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -27,23 +27,11 @@ export default function Home() {
           ecosystems.
         </p>
       </div>
-      <div className="absolute bottom-10 z-10 flex w-full items-center justify-center space-x-12 text-white">
-        <div className="flex flex-col items-center space-y-2">
-          <Info className="h-8 w-8" />
-          <span>Info</span>
-        </div>
-        <div className="flex flex-col items-center space-y-2">
-          <Map className="h-8 w-8" />
-          <span>Map</span>
-        </div>
-        <div className="flex flex-col items-center space-y-2">
-          <Brain className="h-8 w-8" />
-          <span>Brain</span>
-        </div>
-        <div className="flex flex-col items-center space-y-2">
-          <Tag className="h-8 w-8" />
-          <span>SharkTag</span>
-        </div>
+      <div className="absolute bottom-10 z-10 flex w-full items-center justify-center space-x-12 font-nav text-lg text-white">
+        <Link href="#" className="transition-colors hover:text-primary">Info</Link>
+        <Link href="#" className="transition-colors hover:text-primary">Map</Link>
+        <Link href="#" className="transition-colors hover:text-primary">Brain</Link>
+        <Link href="#" className="transition-colors hover:text-primary">SharkTag</Link>
       </div>
     </div>
   );
