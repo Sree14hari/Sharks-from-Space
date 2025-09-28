@@ -28,7 +28,7 @@ export default function Home() {
         <h1 className="font-headline text-4xl font-bold tracking-tight text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] sm:text-5xl md:text-6xl lg:text-8xl">
           SHARKS FROM SPACE
         </h1>
-        <p className="mt-4 max-w-2xl text-lg text-slate-300 md:text-xl">
+        <p className="mt-4 max-w-2xl text-base text-slate-300 md:text-lg">
           Using satellite data to predict shark habitats and protect marine
           ecosystems.
         </p>
