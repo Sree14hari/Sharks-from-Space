@@ -90,7 +90,7 @@ export default function MapPage() {
             blur: 15,
             maxZoom: 10,
             max: maxIntensity,
-            gradient: { 0.4: 'blue', 0.6: 'cyan', 0.8: 'yellow', 1.0: 'red' },
+            gradient: { 0.4: 'darkred', 0.6: 'red', 0.8: 'orange', 1.0: 'yellow' },
           }).addTo(mapRef.current!);
         });
     }
