@@ -2,12 +2,66 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Target, ClipboardList, Database, BrainCircuit, Cpu, AreaChart, Code } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+
+const MotionCard = motion(Card);
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.5,
+      ease: 'easeOut',
+    },
+  }),
+};
+
+const sections = [
+  {
+    icon: <Target className="h-6 w-6 text-primary" />,
+    title: 'Project Mission',
+    content: `To effectively protect vulnerable shark populations, we first need to understand their behavior. This project leverages machine learning to analyze raw satellite tracking data of blue sharks, aiming to identify and predict their elusive foraging hotspots in the North Atlantic. By transforming movement data into behavioral insights, we can provide a valuable tool for marine conservation, helping to identify key areas that may require protection.`,
+  },
+  {
+    icon: <ClipboardList className="h-6 w-6 text-primary" />,
+    title: 'Methodology',
+    content: `This project followed a complete data science pipeline, transforming raw data points into an interactive, predictive map.`,
+  },
+  {
+    icon: <Database className="h-6 w-6 text-primary" />,
+    title: '1. Data Source & Preparation',
+    content: `The foundation of this project is the publicly available "Movements of blue sharks in the North Atlantic Ocean using satellite telemetry, 2014-2017" dataset. Raw CSV files containing timestamped latitude and longitude pings were loaded, cleaned, and unified into a single dataset.`,
+  },
+  {
+    icon: <BrainCircuit className="h-6 w-6 text-primary" />,
+    title: '2. Advanced Feature Engineering',
+    content: `To allow a machine learning model to understand behavior, we engineered a rich set of features from the raw tracking data, including: Movement Dynamics, Rolling Statistics, Cyclical Time Features, and Advanced Metrics to give the model the deepest possible insight into the shark's recent activity.`,
+  },
+  {
+    icon: <Cpu className="h-6 w-6 text-primary" />,
+    title: '3. Machine Learning Model',
+    content: `After experimenting with multiple architectures—including Random Forests, Artificial Neural Networks (ANNs), and sequential LSTMs—a LightGBM (Light Gradient Boosting Machine) model provided the best performance. It achieved 77.4% accuracy with a well-balanced precision and recall on the crucial "Foraging" class.`,
+  },
+  {
+    icon: <AreaChart className="h-6 w-6 text-primary" />,
+    title: '4. Interactive Visualization',
+    content: `The model's predictions were exported as a GeoJSON file containing the probability of foraging at thousands of points across the North Atlantic. This data is rendered on the website as a dynamic and interactive heatmap using the Leaflet.js library, with "X" markers highlighting the most intense hotspot zones.`,
+  },
+  {
+    icon: <Code className="h-6 w-6 text-primary" />,
+    title: 'Key Technologies Used',
+    content: 'Python, Pandas, NumPy, Scikit-learn, LightGBM, imblearn, Leaflet.js, GeoJSON',
+  },
+];
 
 export default function InfoPage() {
   return (
-    <motion.div 
+    <motion.div
       className="relative min-h-screen w-full overflow-y-auto"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -16,7 +70,7 @@ export default function InfoPage() {
       <div
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: "url('https://iili.io/K1iHzen.png')",
+          backgroundImage: "url('https://i.postimg.cc/mDdxvDCH/Screenshot-2025-09-28-130448.png')",
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
@@ -39,80 +93,25 @@ export default function InfoPage() {
           Predicting Shark Foraging Hotspots
         </h2>
 
-        <div className="mt-12 space-y-10">
-          <section>
-            <h3 className="font-headline text-2xl font-semibold text-white">Project Mission</h3>
-            <p className="mt-4 text-base leading-relaxed">
-              To effectively protect vulnerable shark populations, we first need to understand their behavior. This project leverages machine learning to analyze raw satellite tracking data of blue sharks, aiming to identify and predict their elusive foraging hotspots in the North Atlantic. By transforming movement data into behavioral insights, we can provide a valuable tool for marine conservation, helping to identify key areas that may require protection.
-            </p>
-          </section>
-
-          <section>
-            <h3 className="font-headline text-2xl font-semibold text-white">Methodology</h3>
-            <p className="mt-4 text-base leading-relaxed">
-              This project followed a complete data science pipeline, transforming raw data points into an interactive, predictive map.
-            </p>
-          </section>
-
-          <section>
-            <h4 className="font-headline text-xl font-semibold text-white">1. Data Source & Preparation</h4>
-            <p className="mt-3 text-base leading-relaxed">
-              The foundation of this project is the publicly available "Movements of blue sharks in the North Atlantic Ocean using satellite telemetry, 2014-2017" dataset. Raw CSV files containing timestamped latitude and longitude pings were loaded, cleaned, and unified into a single dataset.
-            </p>
-          </section>
-
-          <section>
-            <h4 className="font-headline text-xl font-semibold text-white">2. Advanced Feature Engineering</h4>
-            <p className="mt-3 text-base leading-relaxed">
-              To allow a machine learning model to understand behavior, we engineered a rich set of features from the raw tracking data, including:
-            </p>
-            <ul className="mt-4 list-disc space-y-2 pl-5 text-base">
-              <li>
-                <strong>Movement Dynamics:</strong> Instantaneous speed and turning angles were calculated for each data point.
-              </li>
-              <li>
-                <strong>Rolling Statistics:</strong> To capture behavioral context, we calculated the average speed, standard deviation of speed, and variability of turning angles over a moving time window.
-              </li>
-              <li>
-                <strong>Cyclical Time Features:</strong> Month and hour were converted into sine/cosine pairs so the model could understand their cyclical nature (e.g., that December is next to January).
-              </li>
-              <li>
-                <strong>Advanced Metrics:</strong> We created over a dozen additional features like speed_change, movement_efficiency, and turning_intensity to give the model the deepest possible insight into the shark's recent activity.
-              </li>
-            </ul>
-          </section>
-
-          <section>
-            <h4 className="font-headline text-xl font-semibold text-white">3. Machine Learning Model</h4>
-            <p className="mt-3 text-base leading-relaxed">
-              After experimenting with multiple architectures—including Random Forests, Artificial Neural Networks (ANNs), and sequential LSTMs—a LightGBM (Light Gradient Boosting Machine) model provided the best performance.
-            </p>
-            <ul className="mt-4 list-disc space-y-2 pl-5 text-base">
-              <li>
-                <strong>Class Imbalance:</strong> The "Foraging" behavior is much rarer than "Traveling." We addressed this using advanced sampling techniques like SMOTE to create a balanced training set.
-              </li>
-              <li>
-                <strong>Final Performance:</strong> After extensive tuning, the final model achieved 77.4% accuracy, with a well-balanced 62% precision and 63% recall on the crucial "Foraging" class.
-              </li>
-            </ul>
-          </section>
-
-          <section>
-            <h4 className="font-headline text-xl font-semibold text-white">4. Interactive Visualization</h4>
-            <p className="mt-3 text-base leading-relaxed">
-              The model's predictions were exported as a GeoJSON file containing the probability of foraging at thousands of points across the North Atlantic. This data is rendered on the website as a dynamic and interactive heatmap using the Leaflet.js library, with "X" markers highlighting the most intense hotspot zones.
-            </p>
-          </section>
-
-          <section>
-            <h3 className="font-headline text-2xl font-semibold text-white">Key Technologies Used</h3>
-            <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-base sm:grid-cols-3">
-              <li><strong>Programming Language:</strong> Python</li>
-              <li><strong>Data Manipulation:</strong> Pandas, NumPy</li>
-              <li><strong>Machine Learning:</strong> Scikit-learn, LightGBM, imblearn</li>
-              <li><strong>Web Visualization:</strong> Leaflet.js, GeoJSON</li>
-            </ul>
-          </section>
+        <div className="mt-12 grid gap-6 md:grid-cols-2">
+          {sections.map((section, i) => (
+            <MotionCard
+              key={section.title}
+              className="bg-card/60 backdrop-blur-sm border-border/50 transform transition-all duration-300 hover:bg-card/80 hover:scale-105"
+              custom={i}
+              variants={cardVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              <CardHeader className="flex flex-row items-center gap-4">
+                {section.icon}
+                <CardTitle className="text-xl font-headline text-white">{section.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="text-base text-slate-300">
+                <p>{section.content}</p>
+              </CardContent>
+            </MotionCard>
+          ))}
         </div>
       </div>
     </motion.div>
