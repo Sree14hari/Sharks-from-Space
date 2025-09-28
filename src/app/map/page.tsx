@@ -5,22 +5,21 @@ import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, MapIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
-import type L from 'leaflet';
+import type { Map } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import 'leaflet.heat';
-
 
 export default function MapPage() {
-  const mapRef = useRef<L.Map | null>(null);
+  const mapRef = useRef<Map | null>(null);
   const isMapInitialized = useRef(false);
 
   useEffect(() => {
     if (isMapInitialized.current) return;
     isMapInitialized.current = true;
 
-    // Dynamically import Leaflet and its plugins
+    // Dynamically import Leaflet and its plugins to ensure they only run on the client-side
     const initMap = async () => {
       const L = (await import('leaflet')).default;
+      // 'leaflet.heat' extends L, so it must be imported after leaflet
       await import('leaflet.heat');
 
       // Define custom icon for markers
@@ -40,6 +39,10 @@ export default function MapPage() {
         });
       }
 
+      if (!mapRef.current) {
+        // If map couldn't be initialized, do nothing.
+        return;
+      }
 
       // Add tile layer
       L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
@@ -58,7 +61,7 @@ export default function MapPage() {
               return;
           }
 
-          const heatPoints: L.HeatLatLngTuple[] = [];
+          const heatPoints: [number, number, number][] = [];
           let maxIntensity = 0;
 
           L.geoJSON(data, {
