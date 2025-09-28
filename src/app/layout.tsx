@@ -3,9 +3,9 @@ import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SharkTrack",
+  title: "My App",
   description:
-    "An application for predicting and visualizing shark foraging habitats.",
+    "My application",
 };
 
 export default function RootLayout({

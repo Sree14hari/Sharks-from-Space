@@ -1,16 +1,10 @@
 
 'use client';
-import { useRouter } from 'next/navigation';
 
 export default function Home() {
-  const router = useRouter();
-
-  const handleEnter = () => {
-    router.push('/dashboard');
-  };
 
   return (
-    <div className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden" onClick={handleEnter} style={{ cursor: 'pointer' }}>
+    <div className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden">
       <div
         className="absolute inset-0 z-0"
         style={{
@@ -31,7 +25,6 @@ export default function Home() {
           Using satellite data to predict shark habitats and protect marine
           ecosystems.
         </p>
-        <p className="mt-8 text-lg font-semibold animate-pulse">Click anywhere to enter</p>
       </div>
     </div>
   );

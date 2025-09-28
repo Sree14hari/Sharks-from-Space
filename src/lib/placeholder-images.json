@@ -1,16 +1,3 @@
 {
-  "placeholderImages": [
-    {
-      "id": "habitat_map",
-      "description": "A global map showing predicted shark foraging hotspots.",
-      "imageUrl": "https://images.unsplash.com/photo-1723306743407-cb6ac8f19941?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx3b3JsZCUyMG1hcHxlbnwwfHx8fDE3NTg5OTk5MzJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "world map"
-    },
-    {
-      "id": "shark_with_tag",
-      "description": "A visualization of a shark with a conceptual data-transmitting tag.",
-      "imageUrl": "https://images.unsplash.com/photo-1674786272061-d75d77991cea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzaGFyayUyMHVuZGVyd2F0ZXJ8ZW58MHx8fHwxNzU5MDQyNjI5fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "shark underwater"
-    }
-  ]
+  "placeholderImages": []
 }
