@@ -15,7 +15,7 @@ export default function InfoPage() {
           backgroundAttachment: 'fixed',
         }}
       >
-        <div className="absolute inset-0 bg-black/80 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 bg-black/80 backdrop-blur-[1px]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-4xl px-4 py-16 text-slate-200 sm:px-6 lg:px-8">
@@ -24,7 +24,7 @@ export default function InfoPage() {
           Back to Home
         </Link>
         
-        <h1 className="font-headline text-3xl font-bold text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] sm:text-4xl md:text-5xl">
+        <h1 className="font-headline text-3xl font-bold text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] sm:text-4xl md:text-5xl animate-glow">
           AI for Ocean Predators
         </h1>
         <h2 className="mt-2 font-headline text-xl text-primary sm:text-2xl">
