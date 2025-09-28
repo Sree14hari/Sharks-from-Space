@@ -16,7 +16,7 @@ export default function Home() {
         className="absolute inset-0 z-0"
         style={{
           backgroundImage:
-            "url('https://firebasestudio.ai/public/images/world-map-texture.png')",
+            "url('https://storage.googleapis.com/studiopublic/images/world-map-texture.png')",
           backgroundRepeat: 'repeat',
           backgroundSize: 'auto',
         }}
