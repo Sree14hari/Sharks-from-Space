@@ -2,10 +2,16 @@
 'use client';
 
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 export default function Home() {
   return (
-    <div className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden">
+    <motion.div 
+      className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       <div
         className="absolute inset-0 z-0"
         style={{
@@ -27,12 +33,20 @@ export default function Home() {
           ecosystems.
         </p>
         <div className="mt-12 flex w-full items-center justify-center space-x-4 font-nav text-base text-white sm:space-x-8 sm:text-lg">
-          <Link href="/info" className="transition-all hover:text-primary hover:scale-110">Info</Link>
-          <Link href="#" className="transition-all hover:text-primary hover:scale-110">Map</Link>
-          <Link href="#" className="transition-all hover:text-primary hover:scale-110">Brain</Link>
-          <Link href="#" className="transition-all hover:text-primary hover:scale-110">SharkTag</Link>
+          <motion.div whileHover={{ scale: 1.1, transition: { type: 'spring', stiffness: 300 } }}>
+            <Link href="/info" className="transition-all hover:text-primary">Info</Link>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.1, transition: { type: 'spring', stiffness: 300 } }}>
+            <Link href="#" className="transition-all hover:text-primary">Map</Link>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.1, transition: { type: 'spring', stiffness: 300 } }}>
+            <Link href="#" className="transition-all hover:text-primary">Brain</Link>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.1, transition: { type: 'spring', stiffness: 300 } }}>
+            <Link href="#" className="transition-all hover:text-primary">SharkTag</Link>
+          </motion.div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

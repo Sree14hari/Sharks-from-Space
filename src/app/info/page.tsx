@@ -1,10 +1,18 @@
 
+'use client';
+
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function InfoPage() {
   return (
-    <div className="relative min-h-screen w-full overflow-y-auto">
+    <motion.div 
+      className="relative min-h-screen w-full overflow-y-auto"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       <div
         className="absolute inset-0 z-0"
         style={{
@@ -107,6 +115,6 @@ export default function InfoPage() {
           </section>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
