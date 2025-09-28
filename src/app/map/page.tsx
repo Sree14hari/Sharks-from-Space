@@ -5,13 +5,10 @@ import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, MapIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
-
-// Leaflet is not SSR-friendly, so we need to import it dynamically
+import type L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
-
-// Leaflet.heat is a plugin and needs to be imported after Leaflet
 import 'leaflet.heat';
+
 
 export default function MapPage() {
   const mapRef = useRef<L.Map | null>(null);
@@ -21,70 +18,81 @@ export default function MapPage() {
     if (isMapInitialized.current) return;
     isMapInitialized.current = true;
 
-    // Define custom icon for markers
-    const markerIcon = L.icon({
-      iconUrl: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
-      iconSize: [25, 25],
-      iconAnchor: [12, 25],
-      popupAnchor: [0, -25],
-    });
+    // Dynamically import Leaflet and its plugins
+    const initMap = async () => {
+      const L = (await import('leaflet')).default;
+      await import('leaflet.heat');
 
-    // Initialize map
-    mapRef.current = L.map('map', {
-      center: [40, -45],
-      zoom: 4,
-      scrollWheelZoom: false,
-    });
-
-    // Add tile layer
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-      subdomains: 'abcd',
-      maxZoom: 20,
-    }).addTo(mapRef.current);
-
-    // Fetch and process GeoJSON data
-    fetch('/json/hotspots.geojson')
-      .then(response => response.json())
-      .then(data => {
-        if (!mapRef.current) {
-            // Map was unmounted before data loaded
-            return;
-        }
-
-        const heatPoints: L.HeatLatLngTuple[] = [];
-        let maxIntensity = 0;
-
-        L.geoJSON(data, {
-          pointToLayer: (feature, latlng) => {
-            const foragingProb = feature.properties.foraging_prob;
-            if (foragingProb) {
-              heatPoints.push([latlng.lat, latlng.lng, foragingProb]);
-              if (foragingProb > maxIntensity) {
-                maxIntensity = foragingProb;
-              }
-            }
-
-            // Add markers for the most intense hotspots
-            if (foragingProb > 0.9) {
-                const marker = L.marker(latlng, { icon: markerIcon });
-                marker.bindPopup(`<b>Foraging Hotspot</b><br>Probability: ${(foragingProb * 100).toFixed(2)}%`);
-                return marker;
-            }
-            return L.circleMarker(latlng, { radius: 0, stroke: false }); // Render nothing for less intense points
-          },
-        }).addTo(mapRef.current!);
-
-        // Add heatmap layer
-        (L as any).heatLayer(heatPoints, {
-          radius: 35,
-          blur: 25,
-          maxZoom: 12,
-          max: maxIntensity,
-          gradient: { 0.4: 'blue', 0.65: 'lime', 1: 'red' },
-        }).addTo(mapRef.current!);
+      // Define custom icon for markers
+      const markerIcon = L.icon({
+        iconUrl: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
+        iconSize: [25, 25],
+        iconAnchor: [12, 25],
+        popupAnchor: [0, -25],
       });
+
+      // Initialize map
+      if (document.getElementById('map') && !mapRef.current) {
+        mapRef.current = L.map('map', {
+          center: [40, -45],
+          zoom: 4,
+          scrollWheelZoom: false,
+        });
+      }
+
+
+      // Add tile layer
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 20,
+      }).addTo(mapRef.current!);
+
+      // Fetch and process GeoJSON data
+      fetch('/json/hotspots.geojson')
+        .then(response => response.json())
+        .then(data => {
+          if (!mapRef.current) {
+              // Map was unmounted before data loaded
+              return;
+          }
+
+          const heatPoints: L.HeatLatLngTuple[] = [];
+          let maxIntensity = 0;
+
+          L.geoJSON(data, {
+            pointToLayer: (feature, latlng) => {
+              const foragingProb = feature.properties.foraging_prob;
+              if (foragingProb) {
+                heatPoints.push([latlng.lat, latlng.lng, foragingProb]);
+                if (foragingProb > maxIntensity) {
+                  maxIntensity = foragingProb;
+                }
+              }
+
+              // Add markers for the most intense hotspots
+              if (foragingProb > 0.9) {
+                  const marker = L.marker(latlng, { icon: markerIcon });
+                  marker.bindPopup(`<b>Foraging Hotspot</b><br>Probability: ${(foragingProb * 100).toFixed(2)}%`);
+                  return marker;
+              }
+              return L.circleMarker(latlng, { radius: 0, stroke: false }); // Render nothing for less intense points
+            },
+          }).addTo(mapRef.current!);
+
+          // Add heatmap layer
+          (L as any).heatLayer(heatPoints, {
+            radius: 35,
+            blur: 25,
+            maxZoom: 12,
+            max: maxIntensity,
+            gradient: { 0.4: 'blue', 0.65: 'lime', 1: 'red' },
+          }).addTo(mapRef.current!);
+        });
+    }
+
+    initMap();
 
     return () => {
       if (mapRef.current) {
