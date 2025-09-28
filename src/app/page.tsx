@@ -62,14 +62,14 @@ export default function Home() {
           initial="hidden"
           animate="visible"
         >
-          <motion.div variants={child} className="flex">
+          <motion.div variants={child} className="flex justify-center">
             {'SHARKS FROM'.split('').map((char, index) => (
               <motion.span key={index} variants={child} style={{ marginRight: char === ' ' ? '1rem' : '0' }}>
                 {char}
               </motion.span>
             ))}
           </motion.div>
-          <motion.div variants={child} className="flex sm:ml-4">
+          <motion.div variants={child} className="flex justify-center sm:ml-4">
             {'SPACE'.split('').map((char, index) => (
               <motion.span key={index} variants={child}>
                 {char}
