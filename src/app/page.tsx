@@ -26,7 +26,7 @@ export default function Home() {
           Using satellite data to predict shark habitats and protect marine
           ecosystems.
         </p>
-        <div className="mt-12 flex w-full items-center justify-center space-x-8 font-nav text-base text-white sm:space-x-4 sm:text-lg">
+        <div className="mt-12 flex w-full items-center justify-center space-x-4 font-nav text-base text-white sm:space-x-8 sm:text-lg">
           <Link href="/info" className="transition-all hover:text-primary hover:scale-110">Info</Link>
           <Link href="#" className="transition-all hover:text-primary hover:scale-110">Map</Link>
           <Link href="#" className="transition-all hover:text-primary hover:scale-110">Brain</Link>
