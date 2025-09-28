@@ -67,7 +67,7 @@ export default function BrainPage() {
         </Link>
       </div>
       
-      <div className="relative z-10 flex flex-col lg:flex-row items-center justify-center gap-8 w-full max-w-6xl">
+      <div className="relative z-10 flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16 w-full max-w-6xl">
         <div className="w-full max-w-md lg:max-w-lg">
           <Lottie animationData={animationData} loop={true} />
         </div>
