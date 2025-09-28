@@ -86,11 +86,11 @@ export default function MapPage() {
 
           // Add heatmap layer
           (L as any).heatLayer(heatPoints, {
-            radius: 35,
-            blur: 25,
-            maxZoom: 12,
+            radius: 25,
+            blur: 15,
+            maxZoom: 10,
             max: maxIntensity,
-            gradient: { 0.4: 'blue', 0.65: 'lime', 1: 'red' },
+            gradient: { 0.4: 'blue', 0.6: 'cyan', 0.8: 'yellow', 1.0: 'red' },
           }).addTo(mapRef.current!);
         });
     }
