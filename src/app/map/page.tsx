@@ -48,6 +48,11 @@ export default function MapPage() {
     fetch('/json/hotspots.geojson')
       .then(response => response.json())
       .then(data => {
+        if (!mapRef.current) {
+            // Map was unmounted before data loaded
+            return;
+        }
+
         const heatPoints: L.HeatLatLngTuple[] = [];
         let maxIntensity = 0;
 
