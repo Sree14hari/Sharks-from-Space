@@ -19,14 +19,14 @@ export default function Home() {
       </div>
 
       <div className="relative z-10 flex flex-col items-center justify-center text-center text-white">
-        <h1 className="font-headline text-4xl font-bold tracking-tight text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] sm:text-5xl md:text-5xl lg:text-8xl">
+        <h1 className="font-headline text-4xl font-bold tracking-tight text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] sm:text-5xl md:text-6xl lg:text-8xl">
           SHARKS FROM SPACE
         </h1>
-        <p className="mt-4 max-w-2xl text-xs text-slate-300 sm:text-base">
+        <p className="mt-4 max-w-2xl px-4 text-xs text-slate-300 sm:text-base">
           Using satellite data to predict shark habitats and protect marine
           ecosystems.
         </p>
-        <div className="mt-12 flex w-full items-center justify-center space-x-4 font-nav text-base text-white sm:space-x-12 sm:text-lg">
+        <div className="mt-12 flex w-full items-center justify-center space-x-8 font-nav text-base text-white sm:space-x-12 sm:text-lg">
           <Link href="/info" className="transition-colors hover:text-primary">Info</Link>
           <Link href="#" className="transition-colors hover:text-primary">Map</Link>
           <Link href="#" className="transition-colors hover:text-primary">Brain</Link>
