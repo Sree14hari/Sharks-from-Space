@@ -57,7 +57,7 @@ export default function Home() {
 
       <div className="relative z-10 flex flex-col items-center justify-center text-center text-white">
         <motion.h1 
-          className="font-headline text-3xl font-bold tracking-tight text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] sm:text-5xl md:text-6xl lg:text-7xl animate-glow flex overflow-hidden"
+          className="font-headline text-4xl font-bold tracking-tight text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] sm:text-5xl md:text-6xl lg:text-7xl animate-glow flex flex-wrap justify-center overflow-hidden"
           variants={container}
           initial="hidden"
           animate="visible"
