@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useEffect, useRef } from 'react';
@@ -6,7 +5,11 @@ import Link from 'next/link';
 import { ArrowLeft, MapIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 import type { Map } from 'leaflet';
+
+// Import Leaflet and MarkerCluster CSS
 import 'leaflet/dist/leaflet.css';
+import 'leaflet.markercluster/dist/MarkerCluster.css';
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 
 export default function MapPage() {
   const mapRef = useRef<Map | null>(null);
@@ -16,82 +19,113 @@ export default function MapPage() {
     if (isMapInitialized.current) return;
     isMapInitialized.current = true;
 
-    // Dynamically import Leaflet and its plugins to ensure they only run on the client-side
     const initMap = async () => {
+      // --- DYNAMIC IMPORTS for client-side rendering ---
       const L = (await import('leaflet')).default;
-      // 'leaflet.heat' extends L, so it must be imported after leaflet
+      // These plugins extend the 'L' object
       await import('leaflet.heat');
+      await import('leaflet.markercluster');
 
-      // Define custom icon for markers
-      const markerIcon = L.icon({
-        iconUrl: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
-        iconSize: [25, 25],
-        iconAnchor: [12, 25],
-        popupAnchor: [0, -25],
-      });
-
+      // --- UPDATED: Custom 'X' marker icon using DivIcon for better styling ---
+      const createXIcon = (probability: number) => {
+        return L.divIcon({
+          html: `<b>X</b>`,
+          className: 'x-marker',
+          iconSize: [20, 20],
+        });
+      };
+      
       // Initialize map
       if (document.getElementById('map') && !mapRef.current) {
         mapRef.current = L.map('map', {
-          center: [40, -45],
+          center: [40, -65],
           zoom: 4,
           scrollWheelZoom: false,
+          maxBounds: [[-20, -120], [70, 20]] // Prevents panning too far away
         });
       }
 
-      if (!mapRef.current) {
-        // If map couldn't be initialized, do nothing.
-        return;
-      }
+      if (!mapRef.current) return;
+      const map = mapRef.current;
 
-      // Add tile layer
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution:
-          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: 'abcd',
-        maxZoom: 20,
-      }).addTo(mapRef.current!);
+      // --- NEW: Multiple Basemaps for user to choose ---
+      const darkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OpenStreetMap &copy; CARTO',
+      });
+      const satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri',
+      });
+      
+      darkLayer.addTo(map); // Set the default basemap
 
       // Fetch and process GeoJSON data
-      fetch('/json/hotspots.geojson')
+      fetch('/hotspots.geojson')
         .then(response => response.json())
         .then(data => {
-          if (!mapRef.current) {
-              // Map was unmounted before data loaded
-              return;
-          }
+          if (!mapRef.current) return;
 
+          // --- REFACTORED: Process data for both layers at once ---
           const heatPoints: [number, number, number][] = [];
-          let maxIntensity = 0;
+          
+          // --- NEW: Use MarkerClusterGroup for performance and better visuals ---
+          const markerCluster = L.markerClusterGroup();
 
-          L.geoJSON(data, {
-            pointToLayer: (feature, latlng) => {
-              const foragingProb = feature.properties.foraging_prob;
-              if (foragingProb) {
-                heatPoints.push([latlng.lat, latlng.lng, foragingProb]);
-                if (foragingProb > maxIntensity) {
-                  maxIntensity = foragingProb;
-                }
-              }
+          data.features.forEach((feature: any) => {
+            const { coordinates } = feature.geometry;
+            const { probability } = feature.properties;
+            const latlng: [number, number] = [coordinates[1], coordinates[0]];
 
-              // Add markers for the most intense hotspots
-              if (foragingProb > 0.9) {
-                  const marker = L.marker(latlng, { icon: markerIcon });
-                  marker.bindPopup(`<b>Foraging Hotspot</b><br>Probability: ${(foragingProb * 100).toFixed(2)}%`);
-                  return marker;
-              }
-              return L.circleMarker(latlng, { radius: 0, stroke: false }); // Render nothing for less intense points
-            },
-          }).addTo(mapRef.current!);
+            // Add point to heatmap data
+            heatPoints.push([latlng[0], latlng[1], probability]);
 
-          // Add heatmap layer
-          (L as any).heatLayer(heatPoints, {
-            radius: 25,
-            blur: 15,
+            // Add markers only for the most intense hotspots to the cluster group
+            if (probability > 0.75) {
+              const marker = L.marker(latlng, { icon: createXIcon(probability) });
+              marker.bindPopup(`<b>Foraging Hotspot</b><br>Probability: ${(probability * 100).toFixed(2)}%`);
+              markerCluster.addLayer(marker);
+            }
+          });
+          
+          // --- Create Layers ---
+          const heatLayer = (L as any).heatLayer(heatPoints, {
+            radius: 20,
+            blur: 20,
             maxZoom: 10,
-            max: maxIntensity,
-            gradient: { 0.4: 'darkred', 0.6: 'red', 0.8: 'orange', 1.0: 'yellow' },
-          }).addTo(mapRef.current!);
+            gradient: { 0.4: 'blue', 0.6: 'cyan', 0.8: 'yellow', 1.0: 'red' },
+          });
+
+          // --- NEW: Layer Control Logic ---
+          const baseMaps = {
+            "Dark Matter": darkLayer,
+            "Satellite View": satelliteLayer
+          };
+
+          const overlayMaps = {
+            "Heatmap": heatLayer,
+            "Hotspot Markers": markerCluster
+          };
+          
+          L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map);
+
+          // Add default layers
+          heatLayer.addTo(map);
+          markerCluster.addTo(map);
+
+          // --- NEW: Custom Legend Control ---
+          const legend = new L.Control({ position: 'bottomright' });
+          legend.onAdd = function () {
+            const div = L.DomUtil.create('div', 'info legend');
+            div.innerHTML = 
+              '<div style="background-color: rgba(0, 0, 0, 0.7); padding: 10px; border-radius: 5px; color: white;">' +
+              '<h4>Probability</h4>' +
+              '<div style="display: flex; align-items: center;"><div style="width: 20px; height: 10px; background: red;"></div><span style="margin-left: 5px;">High</span></div>' +
+              '<div style="display: flex; align-items: center;"><div style="width: 20px; height: 10px; background: yellow;"></div><span style="margin-left: 5px;">Medium</span></div>' +
+              '<div style="display: flex; align-items: center;"><div style="width: 20px; height: 10px; background: blue;"></div><span style="margin-left: 5px;">Low</span></div>' +
+              '<div><b>X</b> &nbsp; Intense Hotspot</div>' +
+              '</div>';
+            return div;
+          };
+          legend.addTo(map);
         });
     }
 
@@ -107,45 +141,53 @@ export default function MapPage() {
 
   return (
     <motion.div
-      className="relative min-h-screen w-full flex flex-col"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
+        className="relative min-h-screen w-full flex flex-col"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
     >
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: "url('https://i.postimg.cc/mDdxvDCH/Screenshot-2025-09-28-130448.png')",
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
-        }}
-      >
-        <div className="absolute inset-0 bg-black/80 backdrop-blur-[1px]" />
-      </div>
-
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-8 text-slate-200 sm:px-6 lg:px-8 flex-grow flex flex-col">
-        <div className="flex justify-between items-center mb-4">
-            <Link href="/" className="inline-flex items-center text-primary transition-colors hover:text-white">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Home
-            </Link>
+        {/* You can keep your background styling here */}
+        <div className="absolute inset-0 bg-black/80" />
+        
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-8 text-slate-200 sm:px-6 lg:px-8 flex-grow flex flex-col">
+            <div className="flex justify-between items-center mb-4">
+                <Link href="/" className="inline-flex items-center text-primary transition-colors hover:text-white">
+                    <ArrowLeft className="mr-2 h-4 w-4" />
+                    Back to Home
+                </Link>
+            </div>
+            
+            <div className="flex items-center gap-4 mb-4">
+                <MapIcon className="h-8 w-8 text-primary" />
+                <h1 className="font-headline text-3xl font-bold text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] sm:text-4xl animate-glow">
+                    Foraging Hotspot Map
+                </h1>
+            </div>
+            
+            <p className="mb-4 text-slate-300 max-w-prose">
+                This interactive map visualizes the predicted foraging hotspots for blue sharks in the North Atlantic. The heatmap indicates the probability of foraging behavior, with red areas representing the highest likelihood. Markers indicate zones of intense activity.
+            </p>
+            
+            <div id="map" className="flex-grow w-full h-[60vh] rounded-lg border-2 border-primary/50 shadow-2xl neon-glow" />
+            
+            {/* Simple CSS to make the marker cluster popups look better on a dark theme */}
+            <style jsx global>{`
+              .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+                background: #333;
+                color: #fff;
+              }
+              .x-marker {
+                  color: #ffcc00;
+                  font-weight: bold;
+                  font-size: 20px;
+                  text-align: center;
+                  line-height: 20px;
+                  margin-left: -10px;
+                  margin-top: -10px;
+                  text-shadow: 0px 0px 4px #000;
+              }
+            `}</style>
         </div>
-        
-        <div className="flex items-center gap-4 mb-4">
-            <MapIcon className="h-8 w-8 text-primary" />
-            <h1 className="font-headline text-3xl font-bold text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] sm:text-4xl animate-glow">
-                Foraging Hotspot Map
-            </h1>
-        </div>
-        
-        <p className="mb-4 text-slate-300 max-w-prose">
-            This interactive map visualizes the predicted foraging hotspots for blue sharks in the North Atlantic. The heatmap indicates the probability of foraging behavior, with red areas representing the highest likelihood. Markers indicate zones of intense activity.
-        </p>
-        
-        <div id="map" className="flex-grow w-full h-[60vh] rounded-lg border-2 border-primary/50 shadow-2xl neon-glow" />
-      </div>
     </motion.div>
   );
 }
