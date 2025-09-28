@@ -27,7 +27,7 @@ export default function Home() {
           ecosystems.
         </p>
       </div>
-      <div className="absolute bottom-10 z-10 flex w-full items-center justify-center space-x-12 font-nav text-lg text-white">
+      <div className="absolute bottom-24 z-10 flex w-full items-center justify-center space-x-12 font-nav text-lg text-white">
         <Link href="#" className="transition-colors hover:text-primary">Info</Link>
         <Link href="#" className="transition-colors hover:text-primary">Map</Link>
         <Link href="#" className="transition-colors hover:text-primary">Brain</Link>
