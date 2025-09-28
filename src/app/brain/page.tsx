@@ -29,7 +29,7 @@ export default function BrainPage() {
       </div>
 
       <div className="absolute top-8 left-8 z-20">
-        <Link href="/" className="inline-flex items-center text-primary transition-colors hover:text-white">
+        <Link href="/" className="inline-flex items-center text-red-500 transition-colors hover:text-red-400">
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back to Home
         </Link>
