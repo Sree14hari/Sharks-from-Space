@@ -58,7 +58,8 @@ const CyberpunkHover = ({ text, className, playOnLoad = false }: CyberpunkHoverP
       setTimeout(scramble, 500); // Small delay to make it more visible
       hasPlayedOnLoad.current = true;
     }
-  }, [playOnLoad, scramble]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [playOnLoad]);
 
   return (
     <div
