@@ -71,11 +71,7 @@ export default function InfoPage() {
       <div
         className="absolute inset-0 z-0"
         style={{
-<<<<<<< HEAD
-          backgroundImage: "public/images/world.png",
-=======
           backgroundImage: "url('/images/world.png')",
->>>>>>> 2c1f0b9888a3131e532aab5e8d886e7e6cfae2a9
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
