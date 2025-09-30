@@ -101,7 +101,8 @@ export default function InfoPage() {
               custom={i}
               variants={cardVariants}
               initial="hidden"
-              animate="visible"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
             >
               <CardHeader className="flex flex-row items-center gap-4">
                 {section.icon}
