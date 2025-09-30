@@ -10,6 +10,7 @@ import Lottie from 'lottie-react';
 import animationData from '../../../public/json/Brain.json';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { ChartContainer, ChartTooltipContent } from '@/components/ui/chart';
+import CyberpunkHover from '@/components/ui/cyberpunk-hover';
 
 const specs = [
   {
@@ -130,7 +131,7 @@ export default function BrainPage() {
       <div className="absolute top-4 left-4 sm:top-8 sm:left-8 z-20">
         <Link href="/" className="inline-flex items-center text-red-500 transition-colors hover:text-red-400">
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Home
+          <CyberpunkHover text="Back to Home" />
         </Link>
       </div>
       

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ArrowLeft, MapIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 import type { Map } from 'leaflet';
+import CyberpunkHover from '@/components/ui/cyberpunk-hover';
 
 // Import Leaflet and MarkerCluster CSS
 import 'leaflet/dist/leaflet.css';
@@ -151,9 +152,9 @@ export default function MapPage() {
         
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-8 text-slate-200 sm:px-6 lg:px-8 flex-grow flex flex-col">
             <div className="flex justify-between items-center mb-4">
-                <Link href="/" className="inline-flex items-center text-primary transition-colors hover:text-white">
+                <Link href="/" className="inline-flex items-center text-primary transition-colors hover:text-primary/80">
                     <ArrowLeft className="mr-2 h-4 w-4" />
-                    Back to Home
+                    <CyberpunkHover text="Back to Home" />
                 </Link>
             </div>
             

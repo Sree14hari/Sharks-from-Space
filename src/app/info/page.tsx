@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ArrowLeft, Target, ClipboardList, Database, BrainCircuit, Cpu, AreaChart, Code } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import CyberpunkHover from '@/components/ui/cyberpunk-hover';
 
 const MotionCard = motion(Card);
 
@@ -81,9 +82,9 @@ export default function InfoPage() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-4xl px-4 py-16 text-slate-200 sm:px-6 lg:px-8">
-        <Link href="/" className="mb-8 inline-flex items-center text-primary transition-colors hover:text-white">
+        <Link href="/" className="mb-8 inline-flex items-center text-primary transition-colors hover:text-primary/80">
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Home
+          <CyberpunkHover text="Back to Home" />
         </Link>
         
         <h1 className="font-headline text-3xl font-bold text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] sm:text-4xl md:text-5xl animate-glow">
