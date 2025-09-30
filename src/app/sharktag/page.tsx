@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Upload, Loader, Shark } from 'lucide-react';
+import { ArrowLeft, Upload, Loader, Fish } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -175,7 +175,7 @@ export default function SharkTagPage() {
             <motion.div variants={cardVariants} initial="hidden" animate="visible" exit="hidden">
               <Card className="bg-neutral-900/50 backdrop-blur-[1px] border-primary/50 text-slate-200">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-xl font-headline text-white"><Shark /> Analysis Complete</CardTitle>
+                  <CardTitle className="flex items-center gap-2 text-xl font-headline text-white"><Fish /> Analysis Complete</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div>
