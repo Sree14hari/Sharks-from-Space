@@ -1,18 +1,18 @@
+
+'use client';
+
 import type { Metadata } from "next";
 import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
-
-export const metadata: Metadata = {
-  title: "My App",
-  description:
-    "My application",
-};
+import useSound from "@/hooks/use-sound";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  useSound(); // Hook to enable sound effects
+
   return (
     <html lang="en" className="dark">
       <head>
