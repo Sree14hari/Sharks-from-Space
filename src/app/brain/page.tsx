@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, BrainCircuit, BarChart, Radar } from 'lucide-react';
+import { ArrowLeft, BrainCircuit, BarChart, Radar, ChevronDown } from 'lucide-react';
 import { motion, useInView } from 'framer-motion';
 import { BarChart as RechartsBarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar as RechartsRadar } from 'recharts';
 import Lottie from 'lottie-react';
@@ -134,7 +134,7 @@ export default function BrainPage() {
       </div>
       
       <motion.div
-        className="relative z-10 flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16 w-full max-w-6xl min-h-[80vh]"
+        className="relative z-10 flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16 w-full max-w-6xl min-h-[90vh]"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -157,6 +157,21 @@ export default function BrainPage() {
             ))}
           </CardContent>
         </Card>
+
+        <motion.div
+          className="absolute bottom-4 left-1/2 -translate-x-1/2"
+          animate={{
+            y: [0, 10, 0],
+          }}
+          transition={{
+            duration: 1.5,
+            repeat: Infinity,
+            repeatType: 'loop',
+          }}
+        >
+          <ChevronDown className="h-8 w-8 text-slate-400/50" />
+        </motion.div>
+
       </motion.div>
 
       <motion.div
@@ -214,7 +229,7 @@ export default function BrainPage() {
                 </ResponsiveContainer>
               </ChartContainer>
               <p className="text-sm text-slate-300 mt-4 px-6 pb-6">
-                This radar chart provides a high-level summary of the model's confidence. Each axis represents a different metric: the total number of hotspots predicted at 'High' (&gt;80%), 'Medium' (60-80%), and 'Low' (40-60%) confidence levels. The 'Peak Density' axis shows the count from the single most populated bin in the bar chart above. Together, these points give an at-a-glance understanding of the overall predictive patterns.
+                This radar chart provides a high-level summary of the model's confidence. Each axis represents a different metric: the total number of hotspots predicted at 'High' (>80%), 'Medium' (60-80%), and 'Low' (40-60%) confidence levels. The 'Peak Density' axis shows the count from the single most populated bin in the bar chart above. Together, these points give an at-a-glance understanding of the overall predictive patterns.
               </p>
             </CardContent>
           </Card>
