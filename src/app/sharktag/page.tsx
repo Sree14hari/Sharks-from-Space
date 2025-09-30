@@ -3,7 +3,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Tag, Cpu, Satellite, Thermometer, Gauge, Battery } from 'lucide-react';
+import { ArrowLeft, Tag, Cpu, Satellite, Thermometer, Gauge, Battery, HardDrive, RadioTower, BatteryFull, Fan, Waves, CircuitBoard } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import CyberpunkHover from '@/components/ui/cyberpunk-hover';
@@ -12,34 +12,64 @@ import Image from 'next/image';
 const hardwareComponents = [
     {
         icon: <Cpu className="h-8 w-8 text-primary" />,
-        name: "Microcontroller Unit (MCU)",
-        spec: "Low-power ARM Cortex-M4",
-        description: "The 'brain' of the tag, processing sensor data and managing power consumption."
+        name: "Microcontroller",
+        spec: "Arduino Uno",
+        description: "The 'brain' of the tag, processing sensor data and managing all other components."
     },
     {
         icon: <Satellite className="h-8 w-8 text-primary" />,
-        name: "GPS & Satellite Transmitter",
-        spec: "Iridium SBD Module",
-        description: "Provides precise location data and transmits summarized data packets via the Iridium satellite network."
+        name: "GPS Module",
+        spec: "NEO-6M",
+        description: "Provides precise latitude and longitude coordinates to track the shark's location."
     },
     {
         icon: <Gauge className="h-8 w-8 text-primary" />,
-        name: "9-Axis IMU",
-        spec: "Accelerometer, Gyroscope, Magnetometer",
-        description: "Tracks fine-scale movement, orientation, and heading to infer behaviors like hunting and resting."
+        name: "6-Axis IMU",
+        spec: "MPU6050 Accelerometer & Gyroscope",
+        description: "Captures fine-grained motion and orientation data to help infer different behaviors."
     },
     {
         icon: <Thermometer className="h-8 w-8 text-primary" />,
-        name: "Environmental Sensors",
-        spec: "Pressure, Temperature",
-        description: "Measures depth and water temperature, providing crucial context for the shark's habitat."
+        name: "Environmental Sensor",
+        spec: "DS18B20 Waterproof Temperature Probe",
+        description: "Measures the ambient water temperature to provide environmental context."
     },
     {
-        icon: <Battery className="h-8 w-8 text-primary" />,
-        name: "Power System",
-        spec: "Lithium-ion Battery Pack",
-        description: "Designed for long-duration missions, with a lifespan of over 12 months."
+        icon: <HardDrive className="h-8 w-8 text-primary" />,
+        name: "Data Storage",
+        spec: "MicroSD Card Module",
+        description: "Provides robust onboard storage for logging high-frequency sensor data."
     },
+    {
+        icon: <RadioTower className="h-8 w-8 text-primary" />,
+        name: "Data Transmitter",
+        spec: "LoRa Module (Ra-01)",
+        description: "Simulates the long-range transmission of data packets to a satellite or gateway."
+    },
+    {
+        icon: <BatteryFull className="h-8 w-8 text-primary" />, // Using a different battery icon
+        name: "Power Source",
+        spec: "2x 18650 Li-ion Cells",
+        description: "Provides the main power for the tag's electronics and sensors."
+    },
+    {
+        icon: <Fan className="h-8 w-8 text-primary" />, // Icon for the turbine/motor
+        name: "Hydro-Generator",
+        spec: "Water Flow Turbine & DC Motor",
+        description: "Captures kinetic energy from water flow, spinning a DC motor that acts as a power generator."
+    },
+    {
+        icon: <Waves className="h-8 w-8 text-primary" />, // Icon for power conditioning
+        name: "Power Conditioning",
+        spec: "Bridge Rectifier & Capacitor",
+        description: "Converts the generator's fluctuating output into a stable DC voltage."
+    },
+    {
+        icon: <CircuitBoard className="h-8 w-8 text-primary" />,
+        name: "Charging Module",
+        spec: "TP4056-based board",
+        description: "Safely manages the charging process to protect the Li-ion batteries from overcharging."
+    }
 ];
 
 const cardVariants = {
@@ -85,7 +115,10 @@ export default function SharkTagPage() {
         transition={{ duration: 0.7 }}
       >
         <h1 className="font-headline text-3xl font-bold text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] sm:text-4xl md:text-5xl animate-glow">
-          The SharkTag Project
+          The "FinSight"
+        </h1>
+        <h1 className="font-headline text-3xl font-bold text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] sm:text-4xl md:text-5xl animate-glow">
+          Smart Tag: A Conceptual Design
         </h1>
         <p className="mt-2 text-sm text-slate-300 sm:text-base md:text-lg max-w-3xl">
           A conceptual, next-generation data logger designed to unlock the secrets of shark behavior through advanced sensor fusion and satellite telemetry.
@@ -100,7 +133,7 @@ export default function SharkTagPage() {
           transition={{ duration: 0.7, delay: 0.2 }}
         >
           <Image 
-            src="https://picsum.photos/seed/sharktag/600/400"
+            src="/images/circuit_image.png"
             alt="Conceptual Shark Tag Design"
             width={600}
             height={400}
@@ -110,7 +143,7 @@ export default function SharkTagPage() {
         </motion.div>
         <div className="text-slate-300 space-y-4 text-center lg:text-left">
             <h2 className="font-headline text-2xl text-primary">Mission Briefing</h2>
-            <p>The SharkTag is more than just a tracker. It's a comprehensive behavioral analysis unit. By integrating high-resolution motion sensors with environmental data, it aims to create a complete picture of a shark's life—identifying not just where they go, but what they are doing.</p>
+            <p>The "FinSight" Smart Tag is a next-generation animal telemetry device designed to overcome the primary limitations of current tracking technology: battery life and data granularity. Its mission is to provide long-term, high-fidelity data on shark movement and behavior by integrating a comprehensive sensor suite with a novel energy harvesting system.</p>
             <p>The data collected by this tag provides the raw input for the machine learning models that predict foraging hotspots, contributing directly to conservation efforts.</p>
         </div>
       </div>
