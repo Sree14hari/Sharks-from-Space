@@ -13,9 +13,9 @@ const LoadingScreen = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 1, ease: 'easeInOut' }}
     >
-      <div className="text-center text-primary">
+      <div className="text-center text-white">
         <h1 className="font-headline text-3xl sm:text-4xl md:text-5xl">
-            <CyberpunkHover text="LOADING..." playOnLoad={true} />
+            <CyberpunkHover text="Space Hustle Researchers" playOnLoad={true} />
         </h1>
       </div>
     </motion.div>
