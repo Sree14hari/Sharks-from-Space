@@ -2,33 +2,38 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { useSoundContext } from './use-sound-context';
 
 const useSound = () => {
+  const { setBgMusic, setClickSound, setHoverSound } = useSoundContext();
   const isBgMusicPlaying = useRef(false);
 
   useEffect(() => {
     // --- Sound Effects ---
-    const clickSound = new Audio('/sounds/click.mp3'); // Dummy path
-    const hoverSound = new Audio('/sounds/hover.mp3'); // Dummy path
+    const clickAudio = new Audio('/sounds/click.mp3'); // Dummy path
+    const hoverAudio = new Audio('/sounds/hover.mp3'); // Dummy path
+    setClickSound(clickAudio);
+    setHoverSound(hoverAudio);
 
     const playClickSound = () => {
-      clickSound.currentTime = 0;
-      clickSound.play().catch(e => {}); // Catch errors if playback fails
+      clickAudio.currentTime = 0;
+      clickAudio.play().catch(e => {}); // Catch errors if playback fails
     };
 
     const playHoverSound = () => {
-      hoverSound.currentTime = 0;
-      hoverSound.play().catch(e => {}); // Catch errors if playback fails
+      hoverAudio.currentTime = 0;
+      hoverAudio.play().catch(e => {}); // Catch errors if playback fails
     };
 
     // --- Background Music ---
-    const bgMusic = new Audio('/sounds/background.mp3'); // Dummy path
-    bgMusic.loop = true;
-    bgMusic.volume = 0.3; // Lower volume for background music
+    const music = new Audio('/sounds/background.mp3'); // Dummy path
+    music.loop = true;
+    music.volume = 0.3; 
+    setBgMusic(music);
 
     const playBgMusic = () => {
       if (!isBgMusicPlaying.current) {
-        bgMusic.play().then(() => {
+        music.play().then(() => {
           isBgMusicPlaying.current = true;
         }).catch(e => {
           // Autoplay was prevented, wait for user interaction
@@ -91,8 +96,9 @@ const useSound = () => {
       observer.disconnect();
       window.removeEventListener('click', handleFirstInteraction);
       window.removeEventListener('keydown', handleFirstInteraction);
-      bgMusic.pause();
+      music.pause();
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 };
 
