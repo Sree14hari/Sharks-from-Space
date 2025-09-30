@@ -30,9 +30,9 @@ export default function Home() {
         <h1 
           className="font-headline text-4xl font-bold tracking-tight text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] sm:text-5xl md:text-6xl lg:text-7xl animate-glow flex flex-col sm:flex-row flex-wrap justify-center overflow-hidden"
         >
-          <CyberpunkHover text="SHARKS FROM" playOnLoad />
+          <span>SHARKS FROM</span>
           <span className="sm:ml-4">
-            <CyberpunkHover text="SPACE" playOnLoad />
+            SPACE
           </span>
         </h1>
         <p className="mt-4 max-w-2xl px-4 text-xs text-slate-300 sm:text-sm md:text-base">
