@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useRef } from 'react';
@@ -165,11 +166,11 @@ export default function MapPage() {
                 </h1>
             </div>
             
-            <p className="mb-4 text-slate-300 max-w-prose">
+            <p className="mb-4 text-slate-300 max-w-prose text-sm sm:text-base">
                 This interactive map visualizes the predicted foraging hotspots for blue sharks in the North Atlantic. The heatmap indicates the probability of foraging behavior, with red areas representing the highest likelihood. Markers indicate zones of intense activity.
             </p>
             
-            <div id="map" className="flex-grow w-full h-[60vh] rounded-lg border-2 border-primary/50 shadow-2xl neon-glow" />
+            <div id="map" className="flex-grow w-full h-[70vh] sm:h-[60vh] rounded-lg border-2 border-primary/50 shadow-2xl neon-glow" />
             
             {/* Simple CSS to make the marker cluster popups look better on a dark theme */}
             <style jsx global>{`

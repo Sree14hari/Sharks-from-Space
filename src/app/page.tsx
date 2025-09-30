@@ -10,15 +10,15 @@ export default function Home() {
 
   return (
     <motion.div 
-      className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden"
+      className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden p-4"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="absolute top-8 left-8 z-20">
+      <div className="absolute top-4 left-4 sm:top-8 sm:left-8 z-20">
         <FuturisticButton text="Members" href="/members" />
       </div>
-      <div className="absolute top-8 right-8 z-20">
+      <div className="absolute top-4 right-4 sm:top-8 sm:right-8 z-20">
         <FuturisticButton text="Documentation" href="/info" />
       </div>
 
@@ -47,7 +47,7 @@ export default function Home() {
           Using satellite data to predict shark habitats and protect marine
           ecosystems.
         </p>
-        <div className="mt-12 flex w-full items-center justify-center space-x-8 font-nav text-base text-white sm:space-x-12 sm:text-lg">
+        <div className="mt-12 flex w-full flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:space-x-12 font-nav text-base text-white sm:text-lg">
           <FuturisticButton text="Info" href="/info" />
           <FuturisticButton text="Map" href="/map" />
           <FuturisticButton text="Brain" href="/brain" />

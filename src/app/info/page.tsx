@@ -109,7 +109,7 @@ export default function InfoPage() {
                 {section.icon}
                 <CardTitle className="text-xl font-headline text-white">{section.title}</CardTitle>
               </CardHeader>
-              <CardContent className="text-base text-slate-300">
+              <CardContent className="text-sm sm:text-base text-slate-300">
                 <p>{section.content}</p>
               </CardContent>
             </MotionCard>

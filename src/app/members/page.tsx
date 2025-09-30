@@ -88,7 +88,7 @@ export default function MembersPage() {
         <h1 className="font-headline text-3xl font-bold text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] sm:text-4xl md:text-5xl animate-glow">
           Meet the Researchers
         </h1>
-        <h2 className="mt-2 font-headline text-xl text-primary sm:text-2xl">
+        <h2 className="mt-2 font-headline text-lg text-primary sm:text-2xl">
           The Minds Behind the Mission
         </h2>
 
@@ -111,7 +111,7 @@ export default function MembersPage() {
                 </div>
               </CardHeader>
               <CardContent className="p-6">
-                <p className="text-base text-slate-300 mb-4">{member.bio}</p>
+                <p className="text-sm sm:text-base text-slate-300 mb-4">{member.bio}</p>
                 <div className="flex justify-center gap-4">
                     <Link href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-slate-400 transition-all hover:drop-shadow-[0_0_8px_hsl(var(--foreground))]">
                         <Linkedin className="h-6 w-6" />

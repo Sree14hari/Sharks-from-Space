@@ -16,7 +16,7 @@ const FuturisticButton = ({ text, href, className }: FuturisticButtonProps) => {
     <Link
       href={href}
       className={cn(
-        'group relative inline-block p-3 text-white font-nav text-sm sm:text-base transition-all duration-300 hover:drop-shadow-[0_0_8px_hsl(var(--foreground))]',
+        'group relative inline-block p-2 sm:p-3 text-white font-nav text-xs sm:text-base transition-all duration-300 hover:drop-shadow-[0_0_8px_hsl(var(--foreground))]',
         className
       )}
     >
