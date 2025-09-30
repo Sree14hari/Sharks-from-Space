@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -229,7 +230,7 @@ export default function BrainPage() {
                 </ResponsiveContainer>
               </ChartContainer>
               <p className="text-sm text-slate-300 mt-4 px-6 pb-6">
-                This radar chart provides a high-level summary of the model's confidence. Each axis represents a different metric: the total number of hotspots predicted at 'High' (>80%), 'Medium' (60-80%), and 'Low' (40-60%) confidence levels. The 'Peak Density' axis shows the count from the single most populated bin in the bar chart above. Together, these points give an at-a-glance understanding of the overall predictive patterns.
+                This radar chart provides a high-level summary of the model's confidence. Each axis represents a different metric: the total number of hotspots predicted at 'High' (&gt;80%), 'Medium' (60-80%), and 'Low' (40-60%) confidence levels. The 'Peak Density' axis shows the count from the single most populated bin in the bar chart above. Together, these points give an at-a-glance understanding of the overall predictive patterns.
               </p>
             </CardContent>
           </Card>
