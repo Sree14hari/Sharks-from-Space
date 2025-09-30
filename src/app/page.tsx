@@ -38,8 +38,8 @@ export default function Home() {
         <h1 
           className="font-headline text-4xl font-bold tracking-tight text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] sm:text-5xl md:text-6xl lg:text-7xl animate-glow flex flex-col sm:flex-row flex-wrap justify-center overflow-hidden"
         >
-          <span>SHARKS FROM</span>
-          <span className="sm:ml-4">
+          <span className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl">SHARKS FROM</span>
+          <span className="sm:ml-4 text-3xl sm:text-4xl md:text-5xl lg:text-7xl">
             SPACE
           </span>
         </h1>
@@ -51,7 +51,7 @@ export default function Home() {
           <FuturisticButton text="Info" href="/info" />
           <FuturisticButton text="Map" href="/map" />
           <FuturisticButton text="Brain" href="/brain" />
-          <FuturisticButton text="SharkTag" href="#" />
+          <FuturisticButton text="SharkTag" href="/sharktag" />
         </div>
       </div>
       
