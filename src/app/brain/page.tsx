@@ -188,6 +188,9 @@ export default function BrainPage() {
                   </RechartsBarChart>
                 </ResponsiveContainer>
               </ChartContainer>
+              <p className="text-sm text-slate-300 mt-4 px-6 pb-6">
+                This bar chart breaks down the distribution of our model's high-confidence predictions. Each bar represents a narrow probability range (e.g., 0.90-0.92) and shows the number of hotspots predicted within that specific range. This visualization highlights that when our model identifies a potential hotspot, it often does so with a very high degree of certainty, as shown by the concentration of data in the upper ranges.
+              </p>
             </CardContent>
           </Card>
         </motion.div>
@@ -210,6 +213,9 @@ export default function BrainPage() {
                   </RadarChart>
                 </ResponsiveContainer>
               </ChartContainer>
+              <p className="text-sm text-slate-300 mt-4 px-6 pb-6">
+                This radar chart provides a high-level summary of the model's confidence. Each axis represents a different metric: the total number of hotspots predicted at 'High' (&gt;80%), 'Medium' (60-80%), and 'Low' (40-60%) confidence levels. The 'Peak Density' axis shows the count from the single most populated bin in the bar chart above. Together, these points give an at-a-glance understanding of the overall predictive patterns.
+              </p>
             </CardContent>
           </Card>
         </motion.div>
