@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react';
 import { useSoundContext } from './use-sound-context';
 
 const useSound = () => {
-  const { setBgMusic, setClickSound, setHoverSound } = useSoundContext();
+  const { setBgMusic, setClickSound, setHoverSound, volume, isMuted } = useSoundContext();
   const isBgMusicPlaying = useRef(false);
 
   useEffect(() => {
@@ -28,7 +28,8 @@ const useSound = () => {
     // --- Background Music ---
     const music = new Audio('/sounds/background.mp3'); // Dummy path
     music.loop = true;
-    music.volume = 0.3; 
+    music.volume = volume;
+    music.muted = isMuted;
     setBgMusic(music);
 
     const playBgMusic = () => {
@@ -100,6 +101,14 @@ const useSound = () => {
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    const music = document.querySelector('audio');
+    if (music) {
+      music.volume = volume;
+      music.muted = isMuted;
+    }
+  }, [volume, isMuted]);
 };
 
 export default useSound;

@@ -19,7 +19,7 @@ type SoundContextType = {
 const SoundContext = createContext<SoundContextType | undefined>(undefined);
 
 export const SoundProvider = ({ children }: { children: ReactNode }) => {
-  const [volume, setVolumeState] = useState(0.3);
+  const [volume, setVolumeState] = useState(0.2);
   const [isMuted, setIsMutedState] = useState(false);
   const [bgMusic, setBgMusic] = useState<HTMLAudioElement | null>(null);
   const [clickSound, setClickSound] = useState<HTMLAudioElement | null>(null);
