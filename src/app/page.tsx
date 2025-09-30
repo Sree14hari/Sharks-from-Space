@@ -55,8 +55,8 @@ export default function Home() {
         </div>
       </div>
       
-      <footer className="absolute bottom-4 text-center text-xs text-slate-400/50 z-10">
-        <p>Space Hustle Researchers</p>
+      <footer className="absolute bottom-4 z-10 text-center text-xs text-slate-400/50 font-nav">
+        <CyberpunkHover text="Space Hustle Researchers" />
       </footer>
 
     </motion.div>
