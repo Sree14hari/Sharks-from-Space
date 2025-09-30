@@ -79,7 +79,7 @@ export default function BrainPage() {
         const binnedData = bins.slice(0, -1).map((binStart, index) => {
           const binEnd = bins[index + 1];
           const count = probabilities.filter(
-            (p: number) => p >= binStart && p < binEnd
+            (p: number) => p >= binStart && (p < binEnd || (binEnd === 1.0 && p <= binEnd))
           ).length;
           return {
             name: `${binStart.toFixed(1)}-${binEnd.toFixed(1)}`,
@@ -94,11 +94,13 @@ export default function BrainPage() {
         const lowConfidenceCount = probabilities.filter((p: number) => p > 0.4 && p <= 0.6).length;
         const totalPoints = probabilities.length;
         
+        const maxBinnedCount = Math.max(...binnedData.map(d => d.count));
+
         setRadarData([
           { subject: 'High Confidence (>0.8)', value: highConfidenceCount, fullMark: totalPoints },
           { subject: 'Medium Confidence (0.6-0.8)', value: mediumConfidenceCount, fullMark: totalPoints },
           { subject: 'Low Confidence (0.4-0.6)', value: lowConfidenceCount, fullMark: totalPoints },
-          { subject: 'Highest Density', value: Math.max(...binnedData.map(d => d.count)), fullMark: Math.max(...binnedData.map(d => d.count)) },
+          { subject: 'Highest Density', value: maxBinnedCount, fullMark: maxBinnedCount > 0 ? maxBinnedCount : 1 },
         ] as any);
 
       });
