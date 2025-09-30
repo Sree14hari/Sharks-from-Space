@@ -1,10 +1,13 @@
 
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 const useSound = () => {
+  const isBgMusicPlaying = useRef(false);
+
   useEffect(() => {
+    // --- Sound Effects ---
     const clickSound = new Audio('/sounds/click.mp3'); // Dummy path
     const hoverSound = new Audio('/sounds/hover.mp3'); // Dummy path
 
@@ -18,6 +21,37 @@ const useSound = () => {
       hoverSound.play().catch(e => {}); // Catch errors if playback fails
     };
 
+    // --- Background Music ---
+    const bgMusic = new Audio('/sounds/background.mp3'); // Dummy path
+    bgMusic.loop = true;
+    bgMusic.volume = 0.3; // Lower volume for background music
+
+    const playBgMusic = () => {
+      if (!isBgMusicPlaying.current) {
+        bgMusic.play().then(() => {
+          isBgMusicPlaying.current = true;
+        }).catch(e => {
+          // Autoplay was prevented, wait for user interaction
+        });
+      }
+    };
+
+    // Try to play initially
+    playBgMusic();
+
+    const handleFirstInteraction = () => {
+      playBgMusic();
+      // Remove the listener after the first interaction
+      window.removeEventListener('click', handleFirstInteraction);
+      window.removeEventListener('keydown', handleFirstInteraction);
+    };
+
+    // Add listeners to play on first user interaction as a fallback
+    window.addEventListener('click', handleFirstInteraction);
+    window.addEventListener('keydown', handleFirstInteraction);
+
+
+    // --- Event Listener Management ---
     const addSoundListeners = (element: HTMLElement) => {
       element.addEventListener('click', playClickSound);
       element.addEventListener('mouseenter', playHoverSound);
@@ -55,6 +89,9 @@ const useSound = () => {
     return () => {
       interactiveElements.forEach(el => removeSoundListeners(el as HTMLElement));
       observer.disconnect();
+      window.removeEventListener('click', handleFirstInteraction);
+      window.removeEventListener('keydown', handleFirstInteraction);
+      bgMusic.pause();
     };
   }, []);
 };
