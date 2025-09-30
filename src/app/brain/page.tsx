@@ -118,7 +118,7 @@ export default function BrainPage() {
         <div
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: "url('https://i.postimg.cc/mDdxvDCH/Screenshot-2025-09-28-130448.png')",
+          backgroundImage: "url('/images/world.png')",
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
