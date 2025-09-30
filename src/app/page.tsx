@@ -43,7 +43,7 @@ export default function Home() {
             SPACE
           </span>
         </h1>
-        <p className="mt-4 max-w-2xl px-4 text-xs text-slate-300 sm:text-sm md:text-base">
+        <p className="mt-4 max-w-2xl px-4 text-xs text-slate-300 sm:text-sm md:text-base font-nav">
           Using satellite data to predict shark habitats and protect marine
           ecosystems.
         </p>
