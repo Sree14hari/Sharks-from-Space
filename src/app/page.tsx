@@ -4,6 +4,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import CyberpunkHover from '@/components/ui/cyberpunk-hover';
+import FuturisticButton from '@/components/ui/futuristic-button';
 
 export default function Home() {
 
@@ -14,6 +15,13 @@ export default function Home() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
+      <div className="absolute top-8 left-8 z-20">
+        <FuturisticButton text="Members" href="/members" />
+      </div>
+      <div className="absolute top-8 right-8 z-20">
+        <FuturisticButton text="Documentation" href="/info" />
+      </div>
+
       <div
         className="absolute inset-0 z-0"
         style={{
