@@ -113,7 +113,7 @@ export default function BrainPage() {
   }, []);
 
   return (
-    <div className="relative min-h-screen w-full flex flex-col items-center overflow-y-auto p-4 sm:p-8">
+    <div className="relative min-h-screen w-full flex flex-col items-center overflow-y-auto p-4 sm:p-6 md:p-8">
         <div
         className="absolute inset-0 z-0"
         style={{
@@ -127,7 +127,7 @@ export default function BrainPage() {
         <div className="absolute inset-0 bg-black/80 backdrop-blur-[1px]" />
       </div>
 
-      <div className="absolute top-8 left-8 z-20">
+      <div className="absolute top-4 left-4 sm:top-8 sm:left-8 z-20">
         <Link href="/" className="inline-flex items-center text-red-500 transition-colors hover:text-red-400">
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back to Home
@@ -135,21 +135,21 @@ export default function BrainPage() {
       </div>
       
       <motion.div
-        className="relative z-10 flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16 w-full max-w-6xl min-h-[90vh]"
+        className="relative z-10 flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12 w-full max-w-6xl min-h-[90vh] pt-16 sm:pt-0"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="w-full max-w-md lg:max-w-lg">
+        <div className="w-full max-w-sm sm:max-w-md lg:max-w-lg">
           <Lottie animationData={animationData} loop={true} />
         </div>
         
         <Card className="w-full max-w-md bg-neutral-900/50 backdrop-blur-sm border-neutral-700/50 text-slate-200">
           <CardHeader className="flex flex-row items-center gap-4">
             <BrainCircuit className="h-6 w-6 text-red-500" />
-            <CardTitle className="text-xl font-headline text-white">The AI Brain: Technical Specs</CardTitle>
+            <CardTitle className="text-lg sm:text-xl font-headline text-white">The AI Brain: Technical Specs</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4 text-sm">
+          <CardContent className="space-y-3 sm:space-y-4 text-xs sm:text-sm">
             {specs.map((spec) => (
               <div key={spec.label}>
                 <p className="font-semibold text-red-400">{spec.label}</p>
@@ -177,7 +177,7 @@ export default function BrainPage() {
 
       <motion.div
         ref={chartsRef}
-        className="relative z-10 w-full max-w-6xl mt-16 lg:mt-24 space-y-12"
+        className="relative z-10 w-full max-w-6xl mt-16 space-y-12"
         variants={chartContainerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
@@ -186,25 +186,25 @@ export default function BrainPage() {
           <Card className="bg-neutral-900/50 backdrop-blur-sm border-neutral-700/50 text-slate-200">
             <CardHeader className="flex flex-row items-center gap-4">
               <BarChart className="h-6 w-6 text-red-500" />
-              <CardTitle className="text-xl font-headline text-white">Foraging Probability Distribution</CardTitle>
+              <CardTitle className="text-lg sm:text-xl font-headline text-white">Foraging Probability Distribution</CardTitle>
             </CardHeader>
             <CardContent>
-              <ChartContainer config={{}} className="h-[300px] w-full">
+              <ChartContainer config={{}} className="h-[250px] sm:h-[300px] w-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <RechartsBarChart data={chartData}>
                     <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--muted) / 0.5)" />
-                    <XAxis dataKey="name" stroke="hsl(var(--foreground))" tick={{ fill: 'hsl(var(--foreground))' }} />
-                    <YAxis stroke="hsl(var(--foreground))" tick={{ fill: 'hsl(var(--foreground))' }} />
+                    <XAxis dataKey="name" stroke="hsl(var(--foreground))" tick={{ fill: 'hsl(var(--foreground))', fontSize: 10 }} />
+                    <YAxis stroke="hsl(var(--foreground))" tick={{ fill: 'hsl(var(--foreground))', fontSize: 10 }} />
                     <Tooltip
                       content={<ChartTooltipContent />}
                       cursor={{ fill: 'hsl(var(--primary) / 0.1)' }}
                     />
                     <Legend wrapperStyle={{ color: 'hsl(var(--foreground))' }} />
-                    <Bar dataKey="count" fill="hsl(var(--primary))" name="Data Points" barSize={30} className="neon-glow" />
+                    <Bar dataKey="count" fill="hsl(var(--primary))" name="Data Points" barSize={20} className="neon-glow" />
                   </RechartsBarChart>
                 </ResponsiveContainer>
               </ChartContainer>
-              <p className="text-sm text-slate-300 mt-4 px-6 pb-6">
+              <p className="text-xs sm:text-sm text-slate-300 mt-4 p-4 sm:px-6 sm:pb-6">
                 This bar chart breaks down the distribution of our model's high-confidence predictions. Each bar represents a narrow probability range (e.g., 0.90-0.92) and shows the number of hotspots predicted within that specific range. This visualization highlights that when our model identifies a potential hotspot, it often does so with a very high degree of certainty, as shown by the concentration of data in the upper ranges.
               </p>
             </CardContent>
@@ -215,21 +215,21 @@ export default function BrainPage() {
           <Card className="bg-neutral-900/50 backdrop-blur-sm border-neutral-700/50 text-slate-200">
             <CardHeader className="flex flex-row items-center gap-4">
               <Radar className="h-6 w-6 text-red-500" />
-              <CardTitle className="text-xl font-headline text-white">Hotspot Confidence Analysis</CardTitle>
+              <CardTitle className="text-lg sm:text-xl font-headline text-white">Hotspot Confidence Analysis</CardTitle>
             </CardHeader>
             <CardContent>
-              <ChartContainer config={{}} className="h-[300px] w-full">
+              <ChartContainer config={{}} className="h-[250px] sm:h-[300px] w-full">
                 <ResponsiveContainer width="100%" height="100%">
-                  <RadarChart cx="50%" cy="50%" outerRadius="80%" data={radarData}>
+                  <RadarChart cx="50%" cy="50%" outerRadius="70%" data={radarData}>
                     <PolarGrid stroke="hsl(var(--muted) / 0.5)" />
-                    <PolarAngleAxis dataKey="subject" tick={{ fill: 'hsl(var(--foreground))' }} />
+                    <PolarAngleAxis dataKey="subject" tick={{ fill: 'hsl(var(--foreground))', fontSize: 10 }} />
                     <PolarRadiusAxis angle={30} domain={[0, 'dataMax']} tick={{ fill: 'transparent' }} />
                     <RechartsRadar name="Value" dataKey="value" stroke="hsl(var(--primary))" fill="hsl(var(--primary) / 0.6)" fillOpacity={0.6} className="neon-glow" />
                     <Tooltip content={<ChartTooltipContent />} cursor={{ stroke: 'hsl(var(--primary))', strokeWidth: 2 }} />
                   </RadarChart>
                 </ResponsiveContainer>
               </ChartContainer>
-              <p className="text-sm text-slate-300 mt-4 px-6 pb-6">
+              <p className="text-xs sm:text-sm text-slate-300 mt-4 p-4 sm:px-6 sm:pb-6">
                 This radar chart provides a high-level summary of the model's confidence. Each axis represents a different metric: the total number of hotspots predicted at 'High' (&gt;80%), 'Medium' (60-80%), and 'Low' (40-60%) confidence levels. The 'Peak Density' axis shows the count from the single most populated bin in the bar chart above. Together, these points give an at-a-glance understanding of the overall predictive patterns.
               </p>
             </CardContent>
