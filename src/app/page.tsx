@@ -54,6 +54,11 @@ export default function Home() {
           </Link>
         </div>
       </div>
+      
+      <footer className="absolute bottom-4 text-center text-xs text-slate-400/50 z-10">
+        <p>Space Hustle Researchers</p>
+      </footer>
+
     </motion.div>
   );
 }
