@@ -175,6 +175,46 @@ export default function SharkTagPage() {
           </div>
       </div>
 
+      <div className="relative z-10 w-full max-w-4xl mx-auto py-16 text-slate-200">
+        <h2 className="font-headline text-3xl text-center font-bold text-white mb-10 animate-glow">The Story of Our Project: Decoding the Hunt</h2>
+        
+        <div className="space-y-8 text-sm sm:text-base text-slate-300">
+          <div>
+            <h3 className="font-headline text-xl text-primary mb-2">The Mission: From Dots on a Map to Actionable Insight</h3>
+            <p>Our mission began with a fundamental challenge in marine biology: we can track sharks from space, but we can't easily know what they're doing. The "Movements of blue sharks" dataset gave us thousands of satellite pings—dots on a map showing where sharks have been. But to protect a species, we need to protect their critical habitats, especially the feeding grounds where they sustain themselves. Our goal was to transform those simple dots into a predictive map of behavior, answering the question: "Can we use AI to find a shark's dining room in the vastness of the ocean?"</p>
+          </div>
+          
+          <div>
+            <h3 className="font-headline text-xl text-primary mb-2">The Initial Challenge: An AI That Couldn't Learn</h3>
+            <p>We began by processing the raw data, calculating each shark's speed and turning angle to create our own labels for "Traveling" versus "Foraging" behavior. We then fed this data into standard machine learning models.</p>
+            <p className="mt-2">The initial results were not promising. With accuracies hovering around 60-65%, our models were barely better than a coin flip. We tried different architectures, from Random Forests to complex Neural Networks, but we consistently hit a wall. This told us a crucial lesson: the problem wasn't the model's ability to learn; it was the simplicity of the information we were giving it. The AI was looking at a single snapshot in time and couldn't see the full story.</p>
+          </div>
+
+          <div>
+            <h3 className="font-headline text-xl text-primary mb-2">The Breakthrough: Teaching the AI to See Context</h3>
+            <p>The turning point came with advanced feature engineering. We realized that a shark's current behavior is deeply connected to its recent behavior. We developed a script to create over 20 new features for every single data point, giving our model the context it was missing. These included:</p>
+            <ul className="list-disc list-inside mt-2 space-y-1 pl-4">
+              <li><b>Rolling Statistics:</b> Instead of just one speed reading, the model could now see the average speed and the variability of turning over the last 30 minutes. A high variability in turning is a huge indicator of hunting.</li>
+              <li><b>Movement Dynamics:</b> We added features like speed_change and movement_efficiency to describe the shark's motion in more detail.</li>
+              <li><b>Cyclical Time:</b> We encoded the time of day and month of the year so the model could learn daily and seasonal patterns.</li>
+            </ul>
+            <p className="mt-2">Simultaneously, we tackled the severe class imbalance in our data using the SMOTETomek technique, which gave our model a balanced curriculum to learn from. Armed with this richer, cleaner data, we tested our models again. This time, a Light Gradient Boosting Machine (LightGBM), after extensive tuning, produced a breakthrough.</p>
+          </div>
+
+          <div>
+            <h3 className="font-headline text-xl text-primary mb-2">The Result: A High-Fidelity Predictive Map</h3>
+            <p>Our final, tuned LightGBM model achieved 77.4% accuracy. More importantly, it became truly effective at identifying the rare "Foraging" events, with a balanced 62% precision and 63% recall. We had successfully built a reliable "brain."</p>
+            <p className="mt-2">To make this result useful, we used our model to predict the probability of foraging across thousands of points in the North Atlantic. We used geospatial filtering to remove all landmasses, ensuring our map was geographically accurate. The final output was a GeoJSON file, which we visualized as a dynamic, interactive heatmap using Leaflet.js—the centerpiece of our project.</p>
+          </div>
+
+          <div>
+            <h3 className="font-headline text-xl text-primary mb-2">The Vision for the Future: The "FinSight" Smart Tag</h3>
+            <p>This entire process highlighted the limits of current telemetry data. To truly push beyond 80% or 90% accuracy, we need better, more direct data from the animal itself. This led to the final component of our project: the conceptual design for the "FinSight" Smart Tag.</p>
+            <p className="mt-2">This next-generation device features a comprehensive suite of sensors and, most notably, a hydro-powered energy harvesting system. By using a micro-turbine to recharge its batteries as the shark swims, the tag's operational life could be extended from months to years. This design represents the future of marine research, enabling the long-term, high-fidelity data collection needed to truly protect these magnificent ocean predators.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
   );
 }
