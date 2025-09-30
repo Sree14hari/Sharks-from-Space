@@ -92,7 +92,7 @@ export default function MapPage() {
             radius: 20,
             blur: 20,
             maxZoom: 10,
-            gradient: { 0.4: 'blue', 0.6: 'cyan', 0.8: 'yellow', 1.0: 'red' },
+            gradient: { 0.4: 'blue', 0.6: 'cyan', 0.8: '#AAA', 1.0: '#FFF' },
           });
 
           // --- NEW: Layer Control Logic ---
@@ -119,8 +119,8 @@ export default function MapPage() {
             div.innerHTML = 
               '<div style="background-color: rgba(0, 0, 0, 0.7); padding: 10px; border-radius: 5px; color: white;">' +
               '<h4>Probability</h4>' +
-              '<div style="display: flex; align-items: center;"><div style="width: 20px; height: 10px; background: red;"></div><span style="margin-left: 5px;">High</span></div>' +
-              '<div style="display: flex; align-items: center;"><div style="width: 20px; height: 10px; background: yellow;"></div><span style="margin-left: 5px;">Medium</span></div>' +
+              '<div style="display: flex; align-items: center;"><div style="width: 20px; height: 10px; background: #FFF;"></div><span style="margin-left: 5px;">High</span></div>' +
+              '<div style="display: flex; align-items: center;"><div style="width: 20px; height: 10px; background: #AAA;"></div><span style="margin-left: 5px;">Medium</span></div>' +
               '<div style="display: flex; align-items: center;"><div style="width: 20px; height: 10px; background: blue;"></div><span style="margin-left: 5px;">Low</span></div>' +
               '<div><b>X</b> &nbsp; Intense Hotspot</div>' +
               '</div>';

@@ -129,7 +129,7 @@ export default function BrainPage() {
       </div>
 
       <div className="absolute top-4 left-4 sm:top-8 sm:left-8 z-20">
-        <Link href="/" className="inline-flex items-center text-red-500 transition-all hover:drop-shadow-[0_0_8px_hsl(var(--foreground))]">
+        <Link href="/" className="inline-flex items-center text-primary transition-all hover:drop-shadow-[0_0_8px_hsl(var(--foreground))]">
           <ArrowLeft className="mr-2 h-4 w-4" />
           <CyberpunkHover text="Back to Home" />
         </Link>
@@ -147,13 +147,13 @@ export default function BrainPage() {
         
         <Card className="w-full max-w-md bg-neutral-900/50 backdrop-blur-[1px] border-neutral-700/50 text-slate-200">
           <CardHeader className="flex flex-row items-center gap-4">
-            <BrainCircuit className="h-6 w-6 text-red-500" />
+            <BrainCircuit className="h-6 w-6 text-primary" />
             <CardTitle className="text-lg sm:text-xl font-headline text-white">The AI Brain: Technical Specs</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3 sm:space-y-4 text-xs sm:text-sm">
             {specs.map((spec) => (
               <div key={spec.label}>
-                <p className="font-semibold text-red-400">{spec.label}</p>
+                <p className="font-semibold text-primary">{spec.label}</p>
                 <p className="text-slate-300">{spec.value}</p>
               </div>
             ))}
@@ -186,7 +186,7 @@ export default function BrainPage() {
         <motion.div variants={chartItemVariants}>
           <Card className="bg-neutral-900/50 backdrop-blur-[1px] border-neutral-700/50 text-slate-200">
             <CardHeader className="flex flex-row items-center gap-4">
-              <BarChart className="h-6 w-6 text-red-500" />
+              <BarChart className="h-6 w-6 text-primary" />
               <CardTitle className="text-lg sm:text-xl font-headline text-white">Foraging Probability Distribution</CardTitle>
             </CardHeader>
             <CardContent>
@@ -215,7 +215,7 @@ export default function BrainPage() {
         <motion.div variants={chartItemVariants}>
           <Card className="bg-neutral-900/50 backdrop-blur-[1px] border-neutral-700/50 text-slate-200">
             <CardHeader className="flex flex-row items-center gap-4">
-              <Radar className="h-6 w-6 text-red-500" />
+              <Radar className="h-6 w-6 text-primary" />
               <CardTitle className="text-lg sm:text-xl font-headline text-white">Hotspot Confidence Analysis</CardTitle>
             </CardHeader>
             <CardContent>
