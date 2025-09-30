@@ -1,17 +1,19 @@
 
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 
 interface CyberpunkHoverProps {
   text: string;
   className?: string;
+  playOnLoad?: boolean;
 }
 
-const CyberpunkHover = ({ text, className }: CyberpunkHoverProps) => {
+const CyberpunkHover = ({ text, className, playOnLoad = false }: CyberpunkHoverProps) => {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const [displayText, setDisplayText] = useState(text);
+  const [displayText, setDisplayText] = useState(playOnLoad ? '' : text);
+  const hasPlayedOnLoad = useRef(false);
 
   const scramble = () => {
     let iteration = 0;
@@ -51,10 +53,17 @@ const CyberpunkHover = ({ text, className }: CyberpunkHoverProps) => {
     setDisplayText(text);
   };
 
+  useEffect(() => {
+    if (playOnLoad && !hasPlayedOnLoad.current) {
+      setTimeout(scramble, 500); // Small delay to make it more visible
+      hasPlayedOnLoad.current = true;
+    }
+  }, [playOnLoad, scramble]);
+
   return (
     <div
-      onMouseEnter={scramble}
-      onMouseLeave={stopScramble}
+      onMouseEnter={!playOnLoad ? scramble : undefined}
+      onMouseLeave={!playOnLoad ? stopScramble : undefined}
       className={cn('transition-colors duration-300', className)}
     >
       {displayText}
