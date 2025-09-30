@@ -48,16 +48,16 @@ export default function Home() {
           ecosystems.
         </p>
         <div className="mt-12 flex w-full items-center justify-center space-x-4 font-nav text-base text-white sm:space-x-8 sm:text-lg">
-          <Link href="/info" className="transition-all hover:text-primary">
+          <Link href="/info" className="transition-all hover:drop-shadow-[0_0_8px_hsl(var(--foreground))]">
             <CyberpunkHover text="Info" />
           </Link>
-          <Link href="/map" className="transition-all hover:text-primary">
+          <Link href="/map" className="transition-all hover:drop-shadow-[0_0_8px_hsl(var(--foreground))]">
             <CyberpunkHover text="Map" />
           </Link>
-          <Link href="/brain" className="transition-all hover:text-primary">
+          <Link href="/brain" className="transition-all hover:drop-shadow-[0_0_8px_hsl(var(--foreground))]">
             <CyberpunkHover text="Brain" />
           </Link>
-          <Link href="#" className="transition-all hover:text-primary">
+          <Link href="#" className="transition-all hover:drop-shadow-[0_0_8px_hsl(var(--foreground))]">
             <CyberpunkHover text="SharkTag" />
           </Link>
         </div>

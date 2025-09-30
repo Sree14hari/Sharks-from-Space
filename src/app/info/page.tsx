@@ -82,7 +82,7 @@ export default function InfoPage() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-4xl px-4 py-16 text-slate-200 sm:px-6 lg:px-8">
-        <Link href="/" className="mb-8 inline-flex items-center text-primary transition-colors hover:text-primary/80">
+        <Link href="/" className="mb-8 inline-flex items-center text-primary transition-all hover:drop-shadow-[0_0_8px_hsl(var(--foreground))]">
           <ArrowLeft className="mr-2 h-4 w-4" />
           <CyberpunkHover text="Back to Home" />
         </Link>

@@ -129,7 +129,7 @@ export default function BrainPage() {
       </div>
 
       <div className="absolute top-4 left-4 sm:top-8 sm:left-8 z-20">
-        <Link href="/" className="inline-flex items-center text-red-500 transition-colors hover:text-red-400">
+        <Link href="/" className="inline-flex items-center text-red-500 transition-all hover:drop-shadow-[0_0_8px_hsl(var(--foreground))]">
           <ArrowLeft className="mr-2 h-4 w-4" />
           <CyberpunkHover text="Back to Home" />
         </Link>

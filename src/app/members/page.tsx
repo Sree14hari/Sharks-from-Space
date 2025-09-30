@@ -80,7 +80,7 @@ export default function MembersPage() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-5xl px-4 py-16 text-slate-200 sm:px-6 lg:px-8">
-        <Link href="/" className="mb-8 inline-flex items-center text-primary transition-colors hover:text-primary/80">
+        <Link href="/" className="mb-8 inline-flex items-center text-primary transition-all hover:drop-shadow-[0_0_8px_hsl(var(--foreground))]">
           <ArrowLeft className="mr-2 h-4 w-4" />
           <CyberpunkHover text="Back to Home" />
         </Link>
@@ -113,10 +113,10 @@ export default function MembersPage() {
               <CardContent className="p-6">
                 <p className="text-base text-slate-300 mb-4">{member.bio}</p>
                 <div className="flex justify-center gap-4">
-                    <Link href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-primary transition-colors">
+                    <Link href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-slate-400 transition-all hover:drop-shadow-[0_0_8px_hsl(var(--foreground))]">
                         <Linkedin className="h-6 w-6" />
                     </Link>
-                    <Link href={member.github} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-primary transition-colors">
+                    <Link href={member.github} target="_blank" rel="noopener noreferrer" className="text-slate-400 transition-all hover:drop-shadow-[0_0_8px_hsl(var(--foreground))]">
                         <Github className="h-6 w-6" />
                     </Link>
                 </div>
