@@ -3,10 +3,9 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import CyberpunkHover from '@/components/ui/cyberpunk-hover';
 
 export default function Home() {
-  const text = "SHARKS FROM SPACE";
-
   const container = {
     hidden: { opacity: 0 },
     visible: (i = 1) => ({
@@ -82,18 +81,18 @@ export default function Home() {
           ecosystems.
         </p>
         <div className="mt-12 flex w-full items-center justify-center space-x-4 font-nav text-base text-white sm:space-x-8 sm:text-lg">
-          <motion.div whileHover={{ scale: 1.1, transition: { type: 'spring', stiffness: 300 } }}>
-            <Link href="/info" className="transition-all hover:text-primary">Info</Link>
-          </motion.div>
-          <motion.div whileHover={{ scale: 1.1, transition: { type: 'spring', stiffness: 300 } }}>
-            <Link href="/map" className="transition-all hover:text-primary">Map</Link>
-          </motion.div>
-          <motion.div whileHover={{ scale: 1.1, transition: { type: 'spring', stiffness: 300 } }}>
-            <Link href="/brain" className="transition-all hover:text-primary">Brain</Link>
-          </motion.div>
-          <motion.div whileHover={{ scale: 1.1, transition: { type: 'spring', stiffness: 300 } }}>
-            <Link href="#" className="transition-all hover:text-primary">SharkTag</Link>
-          </motion.div>
+          <Link href="/info" className="transition-all hover:text-primary">
+            <CyberpunkHover text="Info" />
+          </Link>
+          <Link href="/map" className="transition-all hover:text-primary">
+            <CyberpunkHover text="Map" />
+          </Link>
+          <Link href="/brain" className="transition-all hover:text-primary">
+            <CyberpunkHover text="Brain" />
+          </Link>
+          <Link href="#" className="transition-all hover:text-primary">
+            <CyberpunkHover text="SharkTag" />
+          </Link>
         </div>
       </div>
     </motion.div>
