@@ -25,35 +25,43 @@ const cardVariants = {
 
 const members = [
   {
-    name: 'John Doe',
-    role: 'Lead AI Engineer',
-    avatar: 'https://picsum.photos/seed/1/200/200',
-    bio: 'Specializing in deep learning and predictive modeling for ecological systems. John designed the core architecture of the shark tracking AI.',
-    linkedin: '#',
+    name: 'Sreehari R',
+    role: 'Lead AI Engineer and Web Dev',
+    avatar: '/images/sreehari.png',
+    bio: 'Machine Learning |Deep Learning | Flutter | CSE (AI & ML) Undergrad Sree Buddha College of engineering',
+    linkedin: 'https://www.linkedin.com/in/sree14hari',
+    github: 'https://github.com/Sree14hari',
+  },
+  {
+    name: 'Abhinav R',
+    role: 'AI Enthusiast & Designer ',
+    avatar: '/images/abhinav.jpg',
+    bio: 'Graphic Designer | AI & ML | CSE (AI & ML) Undergrad Sree Buddha College of engineering',
+    linkedin: 'https://www.linkedin.com/in/abhinav-r-a2b970286',
     github: '#',
   },
   {
-    name: 'Jane Smith',
-    role: 'Data Scientist & Marine Biologist',
-    avatar: 'https://picsum.photos/seed/2/200/200',
-    bio: 'Bridging the gap between data and marine conservation. Jane curated the dataset and provided critical biological insights for feature engineering.',
-    linkedin: '#',
-    github: '#',
-  },
-  {
-    name: 'Alex Johnson',
-    role: 'Full-Stack Developer',
-    avatar: 'https://picsum.photos/seed/3/200/200',
-    bio: 'Bringing the data to life. Alex developed the interactive map visualization and the overall web application interface.',
-    linkedin: '#',
+    name: 'Avanthika T',
+    role: 'Lead Hardware & Systems Architect',
+    avatar: '/images/minnu.jpg',
+    bio: 'Circuit Design | Embedded Systems | Sensor Integration | ECE Undergrad at Undergrad Sree Buddha College of engineering',
+    linkedin: 'https://www.linkedin.com/in/avanthika08t/',
     github: '#',
   },
     {
-    name: 'Emily White',
-    role: 'UI/UX Designer',
-    avatar: 'https://picsum.photos/seed/4/200/200',
-    bio: 'Crafting intuitive and engaging user experiences. Emily designed the futuristic aesthetic and ensured the platform is both beautiful and functional.',
-    linkedin: '#',
+    name: 'Devasena.S.P',
+    role: 'Hardware & Systems Architect',
+    avatar: '/images/dev.jpg',
+    bio: 'Circuit design | Embedded system | Sensor integration | ECE Undergrad at Undergrad Sree Buddha College of engineering',
+    linkedin: 'https://www.linkedin.com/in/devasena-s-p-3b666534a',
+    github: '#',
+  },
+  {
+    name: 'Riya Mansoor',
+    role: 'Electronics Design | Power Systems',
+    avatar: '/images/riya.jpg',
+    bio: 'Circuit design | Embedded system | Sensor integration | ECE Undergrad at Undergrad Sree Buddha College of engineering',
+    linkedin: 'https://www.linkedin.com/in/riya-mansoor-3bb06234a/',
     github: '#',
   },
 ];
@@ -111,7 +119,7 @@ export default function MembersPage() {
                 </div>
               </CardHeader>
               <CardContent className="p-6">
-                <p className="text-sm sm:text-base text-slate-300 mb-4">{member.bio}</p>
+                <p className="text-sm sm:text-base text-slate-300 mb-4 text-center">{member.bio}</p>
                 <div className="flex justify-center gap-4">
                     <Link href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-slate-400 transition-all hover:drop-shadow-[0_0_8px_hsl(var(--foreground))]">
                         <Linkedin className="h-6 w-6" />
