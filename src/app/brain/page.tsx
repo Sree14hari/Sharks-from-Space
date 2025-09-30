@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, BrainCircuit, BarChart, Radar } from 'lucide-react';
 import { motion, useInView } from 'framer-motion';
@@ -210,5 +210,3 @@ export default function BrainPage() {
     </div>
   );
 }
-
-    
