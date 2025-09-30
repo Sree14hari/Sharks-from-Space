@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -67,48 +66,54 @@ export default function BrainPage() {
   const isInView = useInView(chartsRef, { once: true, amount: 0.3 });
 
   useEffect(() => {
-    fetch('/json/hotspots.geojson')
+    fetch('/hotspots.geojson') // Make sure this path is correct for your project
       .then((response) => response.json())
       .then((data) => {
+        // The property in your GeoJSON is named 'probability'
         const probabilities = data.features.map(
-          (feature: any) => feature.properties.foraging_prob
+          (feature: any) => feature.properties.probability 
         );
         
-        // Prepare data for Bar Chart
-        const bins = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
+        // Filter out any invalid probability values
+        const validProbabilities = probabilities.filter((p: number | null | undefined) => p != null && !isNaN(p));
+
+        // --- CHANGE IS HERE: We've created more detailed bins between 0.8 and 1.0 ---
+        const bins = [0.84, 0.86, 0.88, 0.90, 0.92, 0.94, 0.96, 0.98, 1.01]; // Use 1.01 to ensure 1.0 is included
+        
         const binnedData = bins.slice(0, -1).map((binStart, index) => {
           const binEnd = bins[index + 1];
-          const count = probabilities.filter(
-            (p: number) => p >= binStart && (p < binEnd || (binEnd === 1.0 && p <= binEnd))
+          const count = validProbabilities.filter(
+            (p: number) => p >= binStart && p < binEnd
           ).length;
           return {
-            name: `${binStart.toFixed(1)}-${binEnd.toFixed(1)}`,
+            name: `${binStart.toFixed(2)}-${binEnd.toFixed(2)}`, // Display with more precision
             count: count,
           };
         });
         setChartData(binnedData as any);
 
-        // Prepare data for Radar Chart
-        const highConfidenceCount = probabilities.filter((p: number) => p > 0.8).length;
-        const mediumConfidenceCount = probabilities.filter((p: number) => p > 0.6 && p <= 0.8).length;
-        const lowConfidenceCount = probabilities.filter((p: number) => p > 0.4 && p <= 0.6).length;
-        const totalPoints = probabilities.length;
+        // Radar chart logic remains the same
+        const highConfidenceCount = validProbabilities.filter((p: number) => p > 0.8).length;
+        const mediumConfidenceCount = validProbabilities.filter((p: number) => p > 0.6 && p <= 0.8).length;
+        const lowConfidenceCount = validProbabilities.filter((p: number) => p > 0.4 && p <= 0.6).length;
+        const totalPoints = validProbabilities.length;
         
-        const maxBinnedCount = Math.max(...binnedData.map(d => d.count));
+        const maxBinnedCount = Math.max(...binnedData.map(d => d.count), 0);
 
         setRadarData([
           { subject: 'High Confidence (>0.8)', value: highConfidenceCount, fullMark: totalPoints },
           { subject: 'Medium Confidence (0.6-0.8)', value: mediumConfidenceCount, fullMark: totalPoints },
           { subject: 'Low Confidence (0.4-0.6)', value: lowConfidenceCount, fullMark: totalPoints },
-          { subject: 'Highest Density', value: maxBinnedCount, fullMark: maxBinnedCount > 0 ? maxBinnedCount : 1 },
+          { subject: 'Peak Density', value: maxBinnedCount, fullMark: maxBinnedCount > 0 ? maxBinnedCount : 1 },
         ] as any);
 
-      });
+      })
+      .catch(error => console.error("Error fetching or parsing GeoJSON:", error));
   }, []);
 
   return (
     <div className="relative min-h-screen w-full flex flex-col items-center overflow-y-auto p-4 sm:p-8">
-       <div
+        <div
         className="absolute inset-0 z-0"
         style={{
           backgroundImage: "url('https://i.postimg.cc/mDdxvDCH/Screenshot-2025-09-28-130448.png')",
