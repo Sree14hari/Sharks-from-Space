@@ -98,7 +98,7 @@ export default function InfoPage() {
           {sections.map((section, i) => (
             <MotionCard
               key={section.title}
-              className="bg-neutral-900/50 backdrop-blur-sm border-neutral-700/50 transform transition-all duration-300 hover:bg-neutral-900/70 hover:scale-105"
+              className="bg-neutral-900/50 backdrop-blur-[1px] border-neutral-700/50 transform transition-all duration-300 hover:bg-neutral-900/70 hover:scale-105"
               custom={i}
               variants={cardVariants}
               initial="hidden"

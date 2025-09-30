@@ -145,7 +145,7 @@ export default function BrainPage() {
           <Lottie animationData={animationData} loop={true} />
         </div>
         
-        <Card className="w-full max-w-md bg-neutral-900/50 backdrop-blur-sm border-neutral-700/50 text-slate-200">
+        <Card className="w-full max-w-md bg-neutral-900/50 backdrop-blur-[1px] border-neutral-700/50 text-slate-200">
           <CardHeader className="flex flex-row items-center gap-4">
             <BrainCircuit className="h-6 w-6 text-red-500" />
             <CardTitle className="text-lg sm:text-xl font-headline text-white">The AI Brain: Technical Specs</CardTitle>
@@ -184,7 +184,7 @@ export default function BrainPage() {
         animate={isInView ? "visible" : "hidden"}
       >
         <motion.div variants={chartItemVariants}>
-          <Card className="bg-neutral-900/50 backdrop-blur-sm border-neutral-700/50 text-slate-200">
+          <Card className="bg-neutral-900/50 backdrop-blur-[1px] border-neutral-700/50 text-slate-200">
             <CardHeader className="flex flex-row items-center gap-4">
               <BarChart className="h-6 w-6 text-red-500" />
               <CardTitle className="text-lg sm:text-xl font-headline text-white">Foraging Probability Distribution</CardTitle>
@@ -213,7 +213,7 @@ export default function BrainPage() {
         </motion.div>
 
         <motion.div variants={chartItemVariants}>
-          <Card className="bg-neutral-900/50 backdrop-blur-sm border-neutral-700/50 text-slate-200">
+          <Card className="bg-neutral-900/50 backdrop-blur-[1px] border-neutral-700/50 text-slate-200">
             <CardHeader className="flex flex-row items-center gap-4">
               <Radar className="h-6 w-6 text-red-500" />
               <CardTitle className="text-lg sm:text-xl font-headline text-white">Hotspot Confidence Analysis</CardTitle>
