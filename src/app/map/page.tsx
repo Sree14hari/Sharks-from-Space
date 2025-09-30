@@ -170,8 +170,36 @@ export default function MapPage() {
                 This interactive map visualizes the predicted foraging hotspots for blue sharks in the North Atlantic. The heatmap indicates the probability of foraging behavior, with red areas representing the highest likelihood. Markers indicate zones of intense activity.
             </p>
             
-            <div id="map" className="flex-grow w-full h-[70vh] sm:h-[60vh] rounded-lg border-2 border-primary/50 shadow-2xl neon-glow" />
+            <div id="map" className="flex-grow w-full h-[60vh] sm:h-[70vh] rounded-lg border-2 border-primary/50 shadow-2xl neon-glow" />
             
+            <div className="relative z-10 w-full max-w-4xl mx-auto py-16 text-slate-200">
+                <h2 className="font-headline text-3xl text-center font-bold text-white mb-10 animate-glow">The Hunt for the Ocean's Dining Rooms</h2>
+                
+                <div className="space-y-8 text-sm sm:text-base text-slate-300">
+                    <div>
+                        <p>Our mission began with a simple but profound problem: we can track sharks from space, but we don't know where they eat. We had thousands of satellite pings—just dots on a map showing where sharks have been. To protect them, we needed to find their dining rooms: the hidden foraging hotspots where they hunt and feed.</p>
+                    </div>
+                    
+                    <div>
+                        <p>Initially, our attempts to use AI were met with failure. We fed the models basic information like the time and location of each ping, but the results were no better than a coin flip. The models were blind; they were looking at individual moments in time, unable to see the story of the shark's movement.</p>
+                    </div>
+
+                    <div>
+                        <h3 className="font-headline text-xl text-primary mb-2">The breakthrough came when we decided to teach our AI to think like a biologist. Instead of just giving it a single location, we engineered over 20 new features to give it context. We taught it to ask questions like:</h3>
+                        <ul className="list-disc list-inside mt-2 space-y-1 pl-4">
+                            <li>How has the shark's speed changed in the last 30 minutes?</li>
+                            <li>Has its turning become more erratic recently?</li>
+                            <li>Is this a time of day when hunting is common?</li>
+                        </ul>
+                        <p className="mt-2">By feeding our model this much richer, more dynamic picture of the shark's recent behavior, it finally began to learn. We used a powerful Light Gradient Boosting Machine that, after extensive tuning, achieved 77.4% accuracy.</p>
+                    </div>
+
+                    <div>
+                        <p>With this intelligent "brain," we could finally create the map. We generated a grid across the North Atlantic and asked our model to predict the probability of foraging for every single point in the ocean. The result is the heatmap you see: a predictive map that turns simple dots into a clear, actionable picture of the secret life of sharks.</p>
+                    </div>
+                </div>
+            </div>
+
             {/* Simple CSS to make the marker cluster popups look better on a dark theme */}
             <style jsx global>{`
               .leaflet-popup-content-wrapper, .leaflet-popup-tip {
