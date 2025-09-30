@@ -11,7 +11,7 @@ const LoadingScreen = () => {
       initial={{ opacity: 1 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 1, ease: 'easeInOut' }}
+      transition={{ duration: 1, delay: 2.5, ease: 'easeInOut' }}
     >
       <div className="text-center text-white">
         <h1 className="font-headline text-3xl sm:text-4xl md:text-5xl">
