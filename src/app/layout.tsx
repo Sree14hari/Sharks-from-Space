@@ -9,7 +9,6 @@ import { SoundProvider } from "@/hooks/use-sound-context";
 import VolumeControl from "@/components/ui/volume-control";
 import LoadingScreen from "@/components/ui/loading-screen";
 import { AnimatePresence, motion } from "framer-motion";
-import BackgroundImage from "@/components/ui/background-image";
 
 function SoundInitializer({ children }: { children: React.ReactNode }) {
   useSound(); // Hook to enable sound effects
@@ -55,7 +54,6 @@ export default function RootLayout({
             >
               {!loading && (
                 <>
-                  <BackgroundImage />
                   <div className="relative z-10">
                     {children}
                   </div>
