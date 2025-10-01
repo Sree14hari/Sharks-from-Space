@@ -68,19 +68,6 @@ export default function InfoPage() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: "url('/images/world.png')",
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
-        }}
-      >
-        <div className="absolute inset-0 bg-black/80 backdrop-blur-[1px]" />
-      </div>
-
       <div className="relative z-10 mx-auto max-w-4xl px-4 py-16 text-slate-200 sm:px-6 lg:px-8">
         <Link href="/" className="mb-8 inline-flex items-center text-primary transition-all hover:drop-shadow-[0_0_8px_hsl(var(--foreground))]">
           <ArrowLeft className="mr-2 h-4 w-4" />

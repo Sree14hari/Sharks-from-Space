@@ -88,19 +88,6 @@ const cardVariants = {
 export default function SharkTagPage() {
   return (
     <div className="relative min-h-screen w-full flex flex-col items-center overflow-y-auto p-4 sm:p-6 md:p-8">
-        <div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: "url('/images/world.png')",
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
-        }}
-      >
-        <div className="absolute inset-0 bg-black/80 backdrop-blur-[1px]" />
-      </div>
-
       <div className="absolute top-4 left-4 sm:top-8 sm:left-8 z-20">
         <Link href="/" className="inline-flex items-center text-primary transition-all hover:drop-shadow-[0_0_8px_hsl(var(--foreground))]">
           <ArrowLeft className="mr-2 h-4 w-4" />
