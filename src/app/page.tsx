@@ -22,15 +22,15 @@ export default function Home() {
         <FuturisticButton text="Documentation" href="/info" />
       </div>
 
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: "url('/images/world.png')",
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover"
+          src="/images/bg.mp4"
+        />
         <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px]" />
       </div>
 
