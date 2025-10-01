@@ -22,18 +22,6 @@ export default function Home() {
         <FuturisticButton text="Documentation" href="/info" />
       </div>
 
-      <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover"
-          src="/images/bg.mp4"
-        />
-        <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px]" />
-      </div>
-
       <div className="relative z-10 flex flex-col items-center justify-center text-center text-white">
         <h1 
           className="font-headline text-4xl font-bold tracking-tight text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] sm:text-5xl md:text-6xl lg:text-7xl animate-glow flex flex-col sm:flex-row flex-wrap justify-center overflow-hidden"

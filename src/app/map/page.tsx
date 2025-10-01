@@ -148,9 +148,6 @@ export default function MapPage() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
     >
-        {/* You can keep your background styling here */}
-        <div className="absolute inset-0 bg-black/80" />
-        
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-8 text-slate-200 sm:px-6 lg:px-8 flex-grow flex flex-col">
             <div className="flex justify-between items-center mb-4">
                 <Link href="/" className="inline-flex items-center text-primary transition-all hover:drop-shadow-[0_0_8px_hsl(var(--foreground))]">
