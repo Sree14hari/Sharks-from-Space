@@ -31,7 +31,7 @@ export default function Home() {
           className="w-full h-full object-cover"
           src="/images/bg.mp4"
         />
-        <div className="absolute inset-0 bg-black/60 backdrop-blur-[0px]" />
+        <div className="absolute inset-0 bg-black/70 backdrop-blur-[0px]" />
       </div>
 
       <div className="relative z-10 flex flex-col items-center justify-center text-center text-white">
