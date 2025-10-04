@@ -19,7 +19,7 @@ export default function Home() {
         <FuturisticButton text="Members" href="/members" />
       </div>
       <div className="absolute top-4 right-4 sm:top-8 sm:right-8 z-20">
-        <FuturisticButton text="Documentation" href="/info" />
+        <FuturisticButton text="Documentation" href="https://drive.google.com/file/d/1XsDMSuwBItaCVHdBM83E8y_ktT3SEfxz/view?usp=sharing" />
       </div>
 
       <div className="absolute inset-0 z-0">
